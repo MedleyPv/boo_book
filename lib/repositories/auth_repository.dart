@@ -1,21 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(scope: 'auth')
 class AuthRepository {
-  final HttpClient httpClient;
+  final _client = FirebaseAuth.instance;
 
-  AuthRepository(this.httpClient);
-
-  Stream<AuthenticationStatus> get authenticationStatus =>
-      httpClient.authenticationStatus;
-
-  Future<void> signIn(String userName, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    return httpClient.setToken('token');
-  }
+  Stream<User?> get authStateChanges => _client.authStateChanges();
 
   Future<void> signOut() {
-    return httpClient.clearToken();
+    return _client.signOut();
   }
 }

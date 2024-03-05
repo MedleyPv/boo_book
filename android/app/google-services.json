@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "859828610192",
+    "project_id": "boo-book",
+    "storage_bucket": "boo-book.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859828610192:android:6545a84d817aca7484e415",
+        "android_client_info": {
+          "package_name": "com.example.boo_book"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO5GL0VspIQg1Xct01mbo7ZjZVeZNmnt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

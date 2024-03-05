@@ -3,16 +3,16 @@ part of 'auth_bloc.dart';
 @freezed
 class AuthState with _$AuthState {
   const factory AuthState({
+    User? firebaseUser,
     @Default(AuthenticationStatus.initial) AuthenticationStatus status,
-    @Default(UserProfile()) UserProfile userProfile,
   }) = _AuthState;
 
   factory AuthState.authenticated(
-    UserProfile userProfile,
+    User firebaseUser,
   ) =>
       AuthState(
         status: AuthenticationStatus.authenticated,
-        userProfile: userProfile,
+        firebaseUser: firebaseUser,
       );
 
   factory AuthState.unauthenticated() =>

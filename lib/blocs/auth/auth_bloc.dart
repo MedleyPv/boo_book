@@ -1,30 +1,35 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fresh_dio/fresh_dio.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:boo_book/models/index.dart';
 import 'package:boo_book/repositories/index.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+enum AuthenticationStatus {
+  initial,
+  unauthenticated,
+  authenticated,
+}
+
 @Singleton(scope: 'auth')
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<_AuthEvent, AuthState> {
   final AuthRepository authRepository;
   final UserRepository userRepository;
 
-  late StreamSubscription<AuthenticationStatus> _subscription;
+  late StreamSubscription<User?> _subscription;
 
   AuthBloc({
     required this.authRepository,
     required this.userRepository,
   }) : super(const AuthState()) {
-    _subscription = authRepository.authenticationStatus.listen((status) {
-      add(AuthEvent.authenticationStatusChanged(status));
+    _subscription = authRepository.authStateChanges.listen((user) {
+      add(_AuthenticationStatusChanged(user));
     });
 
     on<_AuthenticationStatusChanged>(_authenticationStatusChanged);
@@ -35,22 +40,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _AuthenticationStatusChanged event,
     Emitter<AuthState> emit,
   ) async {
-    if (event.status == AuthenticationStatus.authenticated) {
-      try {
-        final userProfile = await userRepository.getUserProfile();
+    final firebaseUser = event.user;
 
-        emit(AuthState.authenticated(userProfile));
-      } catch (_) {
-        emit(AuthState.unauthenticated());
-      }
-    } else {
-      emit(
-        state.copyWith(
-          status: event.status,
-          userProfile: const UserProfile(),
-        ),
-      );
+    if (firebaseUser == null) {
+      return emit(AuthState.unauthenticated());
     }
+
+    emit(AuthState.authenticated(firebaseUser));
   }
 
   FutureOr<void> _signOut(_SignOut event, Emitter<AuthState> emit) {

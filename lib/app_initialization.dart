@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -15,6 +16,7 @@ Future<void> initializeApp() async {
 
   initializeSplashScreen(widgetsBinding);
   await initializeDotenv();
+  await initializeFirebase();
   await initializeLogger();
   await initializeLocalization();
   initializeCrashlytics();
@@ -24,6 +26,10 @@ Future<void> initializeApp() async {
 
 void initializeSplashScreen(WidgetsBinding widgetsBinding) {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+}
+
+Future<void> initializeFirebase() {
+  return Firebase.initializeApp();
 }
 
 Future<void> initializeLogger() {

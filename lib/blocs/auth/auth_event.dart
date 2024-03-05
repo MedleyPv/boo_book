@@ -1,9 +1,11 @@
 part of 'auth_bloc.dart';
 
-@freezed
-class AuthEvent with _$AuthEvent {
-  const factory AuthEvent.authenticationStatusChanged(
-    AuthenticationStatus status,
-  ) = _AuthenticationStatusChanged;
-  const factory AuthEvent.signOut() = _SignOut;
+abstract class _AuthEvent {}
+
+class _AuthenticationStatusChanged extends _AuthEvent {
+  final User? user;
+
+  _AuthenticationStatusChanged(this.user);
 }
+
+class _SignOut extends _AuthEvent {}
