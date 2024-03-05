@@ -1,0 +1,142 @@
+name: boo_book
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+  
+  #splash screen
+  flutter_native_splash: ^2.3.10
+
+  #softonix core packages
+  stx_bloc_base: ^0.5.1
+  stx_flutter_form_bloc: ^2.2.0
+
+  #state management
+  provider: ^6.1.2
+  flutter_bloc: ^8.1.4
+
+  #dependency injection
+  get_it: ^7.6.7
+  injectable: ^2.3.2
+
+  #routing
+  auto_route: ^7.8.4
+
+  #code generator for unions/pattern-matching/copy.
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+
+  #easy_localization and generator
+  easy_localization: ^3.0.5
+  stx_easy_localization_generator: ^1.0.1
+
+  #this package extends the native Iterable type with all of the LINQ methods that do not exist in native Dart
+  darq: ^2.0.0
+
+  #local storage
+  shared_preferences: ^2.2.2
+  flutter_secure_storage: ^9.0.0
+
+  #configuration
+  flutter_dotenv: ^5.1.0
+
+  #icons
+  font_awesome_flutter: ^10.7.0
+  cupertino_icons: ^1.0.6
+
+  #other
+
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.8
+  flutter_gen_runner: ^5.4.0
+  auto_route_generator: ^7.3.2
+  injectable_generator: ^2.4.1
+  json_serializable: ^6.7.1
+  freezed: ^2.4.7
+  import_sorter: ^4.6.0
+
+  flutter_lints: ^3.0.1
+  very_good_analysis: ^5.1.0
+
+dependency_overrides:
+  flutter_native_splash: 2.3.10
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - resources/langs/
+    - .env
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+
+flutter_gen:
+  output: lib/styles/
+  line_length: 80
+
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
+
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: false
+
+  fonts:
+    enabled: true
+
+  colors:
+    enabled: true
+    inputs:
+      - assets/colors/colors.xml
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/logo-short.png
+
+import_sorter:
+  comments: false
+  ignored_files:
+    - \**/*.g.dart
+    - \**/*config.dart
+    - \**/*.freezed.dart
+    - \**/*.gen.dart
+    - \**/*.gr.dart
+    - /*.mocks.dart
+
+patrol:
+  app_name: Flutter Guidelines
+  android:
+    package_name: com.example.boo_book
+  ios:
+    bundle_id: com.example.flutterGuidelines
