@@ -55,6 +55,7 @@ dependencies:
   #icons
   font_awesome_flutter: ^10.7.0
   cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.10+1
 
   #firebase
   firebase_core: ^2.26.0
@@ -87,21 +88,20 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
     - resources/langs/
     - .env
   fonts:
-    - family: Poppins
+    - family: Inter
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-SemiBold.ttf
+        - asset: assets/fonts/Inter-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Inter-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Poppins-Italic.ttf
-          style: italic
 
 flutter_gen:
   output: lib/styles/
@@ -139,9 +139,3 @@ import_sorter:
     - \**/*.gr.dart
     - /*.mocks.dart
 
-patrol:
-  app_name: Flutter Guidelines
-  android:
-    package_name: com.example.boo_book
-  ios:
-    bundle_id: com.example.flutterGuidelines
