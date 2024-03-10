@@ -1,31 +1,41 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
 
-import 'package:boo_book/styles/index.dart';
+import 'package:boo_book/widgets/fields/general_text_field.dart';
 
 class TextInputFormBuilder extends StatefulWidget {
   const TextInputFormBuilder({
     super.key,
+    required this.fieldBloc,
     this.label = '',
     this.hintText,
     this.isObscureText = false,
     this.fieldFocusNode,
     this.nextFieldFocusNode,
+    this.textInputType,
+    this.inputFormatters,
     this.onSubmit,
-    required this.fieldBloc,
   });
 
   final String label;
   final String? hintText;
+
   final bool isObscureText;
+
   final FocusNode? fieldFocusNode;
   final FocusNode? nextFieldFocusNode;
-  final VoidCallback? onSubmit;
+
   final TextFieldBloc fieldBloc;
+
+  final TextInputType? textInputType;
+  final List<TextInputFormatter>? inputFormatters;
+
+  final VoidCallback? onSubmit;
 
   @override
   State<TextInputFormBuilder> createState() => _TextInputFormBuilderState();
@@ -64,26 +74,8 @@ class _TextInputFormBuilderState extends State<TextInputFormBuilder> {
               widget.fieldBloc.focusChanged();
             }
           },
-          child: TextField(
+          child: GeneralTextField(
             controller: _controller,
-            autocorrect: false,
-            textInputAction: TextInputAction.next,
-            focusNode: widget.fieldFocusNode,
-            obscureText: widget.isObscureText,
-            onChanged: (value) => widget.fieldBloc.changeValue(value),
-            onSubmitted: (value) {
-              widget.nextFieldFocusNode?.requestFocus();
-              widget.onSubmit?.call();
-            },
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              errorText: state.displayError,
-              helperText: '',
-              helperMaxLines: 1,
-              errorMaxLines: 1,
-              helperStyle: AppTextStyles.error,
-              errorStyle: AppTextStyles.error,
-            ),
           ),
         );
       },
