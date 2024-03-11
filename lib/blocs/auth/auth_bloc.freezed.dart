@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  User? get firebaseUser => throw _privateConstructorUsedError;
+  UserProfile? get user => throw _privateConstructorUsedError;
+  NetworkStatus get networkStatus => throw _privateConstructorUsedError;
   AuthenticationStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,12 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({User? firebaseUser, AuthenticationStatus status});
+  $Res call(
+      {UserProfile? user,
+      NetworkStatus networkStatus,
+      AuthenticationStatus status});
+
+  $UserProfileCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -45,19 +51,36 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firebaseUser = freezed,
+    Object? user = freezed,
+    Object? networkStatus = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      firebaseUser: freezed == firebaseUser
-          ? _value.firebaseUser
-          : firebaseUser // ignore: cast_nullable_to_non_nullable
-              as User?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+      networkStatus: null == networkStatus
+          ? _value.networkStatus
+          : networkStatus // ignore: cast_nullable_to_non_nullable
+              as NetworkStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserProfileCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserProfileCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -69,7 +92,13 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? firebaseUser, AuthenticationStatus status});
+  $Res call(
+      {UserProfile? user,
+      NetworkStatus networkStatus,
+      AuthenticationStatus status});
+
+  @override
+  $UserProfileCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -83,14 +112,19 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firebaseUser = freezed,
+    Object? user = freezed,
+    Object? networkStatus = null,
     Object? status = null,
   }) {
     return _then(_$AuthStateImpl(
-      firebaseUser: freezed == firebaseUser
-          ? _value.firebaseUser
-          : firebaseUser // ignore: cast_nullable_to_non_nullable
-              as User?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+      networkStatus: null == networkStatus
+          ? _value.networkStatus
+          : networkStatus // ignore: cast_nullable_to_non_nullable
+              as NetworkStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -103,17 +137,22 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 
 class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl(
-      {this.firebaseUser, this.status = AuthenticationStatus.initial});
+      {this.user,
+      this.networkStatus = NetworkStatus.initial,
+      this.status = AuthenticationStatus.initial});
 
   @override
-  final User? firebaseUser;
+  final UserProfile? user;
+  @override
+  @JsonKey()
+  final NetworkStatus networkStatus;
   @override
   @JsonKey()
   final AuthenticationStatus status;
 
   @override
   String toString() {
-    return 'AuthState(firebaseUser: $firebaseUser, status: $status)';
+    return 'AuthState(user: $user, networkStatus: $networkStatus, status: $status)';
   }
 
   @override
@@ -121,13 +160,14 @@ class _$AuthStateImpl implements _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthStateImpl &&
-            (identical(other.firebaseUser, firebaseUser) ||
-                other.firebaseUser == firebaseUser) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.networkStatus, networkStatus) ||
+                other.networkStatus == networkStatus) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, firebaseUser, status);
+  int get hashCode => Object.hash(runtimeType, user, networkStatus, status);
 
   @JsonKey(ignore: true)
   @override
@@ -138,11 +178,14 @@ class _$AuthStateImpl implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
-      {final User? firebaseUser,
+      {final UserProfile? user,
+      final NetworkStatus networkStatus,
       final AuthenticationStatus status}) = _$AuthStateImpl;
 
   @override
-  User? get firebaseUser;
+  UserProfile? get user;
+  @override
+  NetworkStatus get networkStatus;
   @override
   AuthenticationStatus get status;
   @override

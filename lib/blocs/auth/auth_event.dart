@@ -8,4 +8,8 @@ class _AuthenticationStatusChanged extends _AuthEvent {
   _AuthenticationStatusChanged(this.user);
 }
 
+class _SignInWithGoogleEvent extends _AuthEvent {}
+
+class _SignInWithAppleEvent extends _AuthEvent {}
+
 class _SignOut extends _AuthEvent {}

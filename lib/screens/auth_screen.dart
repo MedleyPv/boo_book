@@ -28,7 +28,7 @@ class AuthScreen extends StatelessWidget {
             return [const LoginRoute()];
           case AuthenticationStatus.authenticated:
             _removeSplashScreen();
-            return [const HomeRouter()];
+            return [const HomeRoute()];
         }
       },
     );

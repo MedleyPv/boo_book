@@ -20,7 +20,13 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfile {
-  String? get userName => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  String get nickname => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +40,14 @@ abstract class $UserProfileCopyWith<$Res> {
           UserProfile value, $Res Function(UserProfile) then) =
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
-  $Res call({String? userName});
+  $Res call(
+      {String uid,
+      String nickname,
+      String displayName,
+      String description,
+      String email,
+      DateTime? birthday,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -50,13 +63,43 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? uid = null,
+    Object? nickname = null,
+    Object? displayName = null,
+    Object? description = null,
+    Object? email = null,
+    Object? birthday = freezed,
+    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthday: freezed == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -69,7 +112,14 @@ abstract class _$$UserProfileImplCopyWith<$Res>
       __$$UserProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? userName});
+  $Res call(
+      {String uid,
+      String nickname,
+      String displayName,
+      String description,
+      String email,
+      DateTime? birthday,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -83,31 +133,87 @@ class __$$UserProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? uid = null,
+    Object? nickname = null,
+    Object? displayName = null,
+    Object? description = null,
+    Object? email = null,
+    Object? birthday = freezed,
+    Object? imageUrl = null,
   }) {
     return _then(_$UserProfileImpl(
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthday: freezed == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserProfileImpl implements _UserProfile {
-  const _$UserProfileImpl({this.userName});
+class _$UserProfileImpl extends _UserProfile {
+  const _$UserProfileImpl(
+      {this.uid = '',
+      this.nickname = '',
+      this.displayName = '',
+      this.description = '',
+      this.email = '',
+      this.birthday,
+      this.imageUrl = ''})
+      : super._();
 
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileImplFromJson(json);
 
   @override
-  final String? userName;
+  @JsonKey()
+  final String uid;
+  @override
+  @JsonKey()
+  final String nickname;
+  @override
+  @JsonKey()
+  final String displayName;
+  @override
+  @JsonKey()
+  final String description;
+  @override
+  @JsonKey()
+  final String email;
+  @override
+  final DateTime? birthday;
+  @override
+  @JsonKey()
+  final String imageUrl;
 
   @override
   String toString() {
-    return 'UserProfile(userName: $userName)';
+    return 'UserProfile(uid: $uid, nickname: $nickname, displayName: $displayName, description: $description, email: $email, birthday: $birthday, imageUrl: $imageUrl)';
   }
 
   @override
@@ -115,13 +221,24 @@ class _$UserProfileImpl implements _UserProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserProfileImpl &&
-            (identical(other.userName, userName) ||
-                other.userName == userName));
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.birthday, birthday) ||
+                other.birthday == birthday) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userName);
+  int get hashCode => Object.hash(runtimeType, uid, nickname, displayName,
+      description, email, birthday, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -137,14 +254,34 @@ class _$UserProfileImpl implements _UserProfile {
   }
 }
 
-abstract class _UserProfile implements UserProfile {
-  const factory _UserProfile({final String? userName}) = _$UserProfileImpl;
+abstract class _UserProfile extends UserProfile {
+  const factory _UserProfile(
+      {final String uid,
+      final String nickname,
+      final String displayName,
+      final String description,
+      final String email,
+      final DateTime? birthday,
+      final String imageUrl}) = _$UserProfileImpl;
+  const _UserProfile._() : super._();
 
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
       _$UserProfileImpl.fromJson;
 
   @override
-  String? get userName;
+  String get uid;
+  @override
+  String get nickname;
+  @override
+  String get displayName;
+  @override
+  String get description;
+  @override
+  String get email;
+  @override
+  DateTime? get birthday;
+  @override
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const card = Color(0xFFD4D9DE);
   static const scaffoldBg = Color(0xFFC0C9D1);
-  static const loginButton = Color(0x03D9D9D9);
+  static const loginButton = Color(0xFFD9D9D9);
   static const navigationBar = Color(0xFFE8EAEB);
   static const numberButton = Color(0xFF868D92);
 

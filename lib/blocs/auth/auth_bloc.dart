@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:stx_bloc_base/stx_bloc_base.dart';
 
+import 'package:boo_book/models/index.dart';
 import 'package:boo_book/repositories/index.dart';
 
 part 'auth_bloc.freezed.dart';
@@ -33,8 +35,15 @@ class AuthBloc extends Bloc<_AuthEvent, AuthState> {
     });
 
     on<_AuthenticationStatusChanged>(_authenticationStatusChanged);
+
+    on<_SignInWithGoogleEvent>(_onSignInWithGoogle);
+    on<_SignInWithAppleEvent>(_onSignInWithApple);
+
     on<_SignOut>(_signOut);
   }
+
+  void signInWithGoogle() => add(_SignInWithGoogleEvent());
+  void signInWithApple() => add(_SignInWithAppleEvent());
 
   FutureOr<void> _authenticationStatusChanged(
     _AuthenticationStatusChanged event,
@@ -46,7 +55,38 @@ class AuthBloc extends Bloc<_AuthEvent, AuthState> {
       return emit(AuthState.unauthenticated());
     }
 
-    emit(AuthState.authenticated(firebaseUser));
+    var userProfile = await userRepository.getUserProfile(firebaseUser.uid);
+
+    if (userProfile == null) {
+      userProfile = UserProfile.fromFirebaseUser(firebaseUser);
+
+      await userRepository.createUserProfile(userProfile);
+    }
+
+    emit(
+      AuthState.authenticated(userProfile),
+    );
+  }
+
+  FutureOr<void> _onSignInWithGoogle(
+    _SignInWithGoogleEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    // TODO(Pasha): Add error handling
+    try {
+      await authRepository.signInWithGoogle();
+    } catch (e, stackTrace) {
+      addError(e, stackTrace);
+
+      emit(AuthState.unauthenticated());
+    }
+  }
+
+  FutureOr<void> _onSignInWithApple(
+    _SignInWithAppleEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    // TODO(Pasha): Add login with Apple
   }
 
   FutureOr<void> _signOut(_SignOut event, Emitter<AuthState> emit) {

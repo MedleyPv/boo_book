@@ -20,7 +20,7 @@ class LoginButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Material(
-        color: AppColors.loginButton,
+        color: AppColors.loginButton.withOpacity(0.25),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: const BorderSide(),
