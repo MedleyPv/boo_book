@@ -100,6 +100,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/login_bg.png
+  AssetGenImage get loginBg =>
+      const AssetGenImage('assets/images/login_bg.png');
+
   /// File path: assets/images/logo-short.png
   AssetGenImage get logoShort =>
       const AssetGenImage('assets/images/logo-short.png');
@@ -108,7 +112,7 @@ class $AssetsImagesGen {
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logoShort, logo];
+  List<AssetGenImage> get values => [loginBg, logoShort, logo];
 }
 
 class $ResourcesLangsGen {

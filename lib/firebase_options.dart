@@ -65,6 +65,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '859828610192',
     projectId: 'boo-book',
     storageBucket: 'boo-book.appspot.com',
+    iosClientId: '859828610192-c10gp5k6l8vmane53u9rn1heb2egj08u.apps.googleusercontent.com',
     iosBundleId: 'com.book.booBook',
   );
 }
