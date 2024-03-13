@@ -15,15 +15,29 @@ class AppRouter extends $AppRouter {
       path: '/',
       page: AuthRoute.page,
       children: [
-        AutoRoute(page: LoginRoute.page),
         AutoRoute(
-          page: HomeRoute.page,
+          page: LoginRoute.page,
+        ),
+        AutoRoute(
+          page: MainRouter.page,
           children: [
             AutoRoute(
               path: '',
-              page: HomeRoute.page,
-              children: const [
-                //
+              page: MainRoute.page,
+              children: [
+                AutoRoute(
+                  initial: true,
+                  page: HomeRoute.page,
+                ),
+                AutoRoute(
+                  page: LibraryRoute.page,
+                ),
+                AutoRoute(
+                  page: CommunityRoute.page,
+                ),
+                AutoRoute(
+                  page: ProfileRoute.page,
+                ),
               ],
             ),
             //

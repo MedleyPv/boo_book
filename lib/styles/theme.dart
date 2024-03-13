@@ -39,6 +39,14 @@ class AppTheme {
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
+        bodySmall: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w300,
+        ),
+        displaySmall: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w400,
+        ),
       ).apply(displayColor: Colors.black),
       fontFamily: FontFamily.inter,
     );
