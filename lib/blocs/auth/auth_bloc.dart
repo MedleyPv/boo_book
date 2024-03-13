@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:stx_bloc_base/stx_bloc_base.dart';
 
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/repositories/index.dart';

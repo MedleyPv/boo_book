@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:boo_book/models/index.dart';
 import 'package:boo_book/router/index.dart';
 import 'injector.config.dart';
 
@@ -18,6 +19,11 @@ void configureAuthDependencies() {
 }
 
 //register other dependencies (except auth ones)
-void configureUserDependencies(GetIt getIt) {
-  getIt.init();
+void configureUserDependencies(UserProfile userProfile) {
+  getIt
+    ..init()
+    ..registerSingleton(
+      userProfile.uid,
+      instanceName: 'userUid',
+    );
 }

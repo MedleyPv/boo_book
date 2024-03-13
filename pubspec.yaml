@@ -65,7 +65,10 @@ dependencies:
   firebase_auth: ^4.17.7
   cloud_firestore: ^4.15.7
 
-  #other
+  #widgets
+  auto_size_text: ^3.0.0
+  cached_network_image: ^3.3.1
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   integration_test:
@@ -97,6 +100,8 @@ flutter:
   fonts:
     - family: Inter
       fonts:
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
         - asset: assets/fonts/Inter-Regular.ttf
           weight: 400
         - asset: assets/fonts/Inter-Medium.ttf

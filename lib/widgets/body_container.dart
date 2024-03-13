@@ -31,7 +31,9 @@ class BodyContainer extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+            padding: const EdgeInsets.all(
+              20,
+            ).copyWith(bottom: 0),
             child: Row(
               children: [
                 Expanded(
@@ -39,7 +41,7 @@ class BodyContainer extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: textTheme.labelMedium,
+                        style: textTheme.labelLarge,
                       ),
                       if (counter != null) ...[
                         const SizedBox(width: 6),
