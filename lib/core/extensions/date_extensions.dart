@@ -2,7 +2,7 @@ extension DateStartTime on DateTime {
   static DateTime get monthStart {
     final now = DateTime.now();
 
-    return DateTime(now.year, now.month, 0);
+    return DateTime(now.year, now.month);
   }
 
   static DateTime get weekStart {

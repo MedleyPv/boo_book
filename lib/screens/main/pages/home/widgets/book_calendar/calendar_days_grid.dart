@@ -7,6 +7,9 @@ import 'package:boo_book/core/index.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/styles/index.dart';
 
+// TODO(Pasha): Fix week start day
+// TODO(Pasha): Show day in table way
+
 class CalendarDaysGrid extends StatelessWidget {
   const CalendarDaysGrid({
     super.key,
