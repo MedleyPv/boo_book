@@ -29,49 +29,45 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
     final textTheme = context.textTheme;
     final userProfile = context.read<AuthBloc>().state.user!;
 
-    return Scaffold(
-      body: SafeArea(
-        child: BlocBuilder<HomeBloc, HomeBlocState>(
-          builder: (context, state) {
-            return SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 14),
-              child: Column(
-                children: [
-                  AutoSizeText(
-                    'Привіт, ${userProfile.displayName}!',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: textTheme.titleLarge,
-                    maxFontSize:
-                        textTheme.titleLarge?.fontSize ?? double.infinity,
-                    minFontSize: 20,
-                  ),
-                  const SizedBox(height: 26),
-                  BookCalendar(
-                    calendarBooks: state.extraData,
-                  ),
-                  const SizedBox(height: 26),
-                  BodyContainer(
-                    title: 'Продовжити читати',
-                    topAction: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      child: Assets.icons.arrowLeft.svg(),
-                      onTap: () => context.navigateTo(
-                        const LibraryRoute(),
-                      ),
-                    ),
-                    child: Column(
-                      children: state.data
-                          .map((book) => ProgressBookCard(book: book))
-                          .toList(),
+    return LandingPageScaffold(
+      body: BlocBuilder<HomeBloc, HomeBlocState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                AutoSizeText(
+                  'Привіт, ${userProfile.displayName}!',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: textTheme.titleLarge,
+                  maxFontSize:
+                      textTheme.titleLarge?.fontSize ?? double.infinity,
+                  minFontSize: 20,
+                ),
+                const SizedBox(height: 26),
+                BookCalendar(
+                  calendarBooks: state.extraData,
+                ),
+                const SizedBox(height: 26),
+                BodyContainer(
+                  title: 'Продовжити читати',
+                  topAction: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    child: Assets.icons.arrowLeft.svg(),
+                    onTap: () => context.navigateTo(
+                      const LibraryRoute(),
                     ),
                   ),
-                ],
-              ),
-            );
-          },
-        ),
+                  child: Column(
+                    children: state.data
+                        .map((book) => ProgressBookCard(book: book))
+                        .toList(),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

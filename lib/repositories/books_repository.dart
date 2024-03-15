@@ -6,6 +6,17 @@ import 'package:boo_book/repositories/mixin/firestore_mixin_repo.dart';
 
 @injectable
 class BooksRepository with FirestoreMixinRepo {
+  Future<List<UserBookModel>> getUncompletedBooks(String userUid) async {
+    final response = await userDoc(userUid)
+        .collection('books')
+        .where('completed', isNotEqualTo: true)
+        .get();
+
+    return response.docs
+        .map((doc) => UserBookModel.fromJson(doc.data()))
+        .toList();
+  }
+
   Future<List<UserBookModel>> getUserBooks(String userUid) async {
     final response = await userDoc(userUid).collection('books').get();
 
