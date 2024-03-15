@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:boo_book/screens/main/pages/home/home_bloc.dart';
+import 'package:boo_book/screens/main/pages/library/library_bloc.dart';
 import 'package:boo_book/services/index.dart';
 
 class MainStateWrapper extends StatelessWidget {
@@ -16,7 +17,9 @@ class MainStateWrapper extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => getIt<HomeBloc>(),
-          lazy: false,
+        ),
+        BlocProvider(
+          create: (_) => getIt<LibraryBloc>(),
         ),
       ],
       child: child,

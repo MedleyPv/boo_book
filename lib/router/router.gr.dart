@@ -45,7 +45,7 @@ abstract class $AppRouter extends _i9.RootStackRouter {
     LibraryRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.LibraryScreen(),
+        child: _i9.WrappedRoute(child: const _i4.LibraryScreen()),
       );
     },
     LoginRoute.name: (routeData) {

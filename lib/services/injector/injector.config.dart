@@ -14,6 +14,7 @@ import 'package:boo_book/repositories/books_repository.dart' as _i7;
 import 'package:boo_book/repositories/index.dart' as _i6;
 import 'package:boo_book/repositories/user_repository.dart' as _i4;
 import 'package:boo_book/screens/main/pages/home/home_bloc.dart' as _i8;
+import 'package:boo_book/screens/main/pages/library/library_bloc.dart' as _i9;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -46,6 +47,10 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.factory<_i7.BooksRepository>(() => _i7.BooksRepository());
     gh.lazySingleton<_i8.HomeBloc>(() => _i8.HomeBloc(
+          userUid: gh<String>(instanceName: 'userUid'),
+          repository: gh<_i7.BooksRepository>(),
+        ));
+    gh.lazySingleton<_i9.LibraryBloc>(() => _i9.LibraryBloc(
           userUid: gh<String>(instanceName: 'userUid'),
           repository: gh<_i7.BooksRepository>(),
         ));

@@ -17,6 +17,8 @@ class UserBookModel with _$UserBookModel {
     @Default('') String author,
     @Default('') String imageUrl,
     @Default(0) int progress,
+    @Default(0.0) double rating,
+    @Default(false) bool completed,
     DateTime? lastRed,
     DateTime? started,
   }) = _UserBookModel;

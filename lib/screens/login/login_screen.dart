@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:boo_book/blocs/auth/auth_bloc.dart';
+import 'package:boo_book/core/index.dart';
 import 'package:boo_book/styles/index.dart';
 import 'widgets/index.dart';
 
@@ -14,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
-    final screenHeight = MediaQuery.sizeOf(context).height;
+    final screenHeight = context.sizeOf.height;
 
     return LoginScaffold(
       shadowHeight: screenHeight * 0.45,

@@ -25,6 +25,8 @@ mixin _$UserBookModel {
   String get author => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get progress => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
+  bool get completed => throw _privateConstructorUsedError;
   DateTime? get lastRed => throw _privateConstructorUsedError;
   DateTime? get started => throw _privateConstructorUsedError;
 
@@ -46,6 +48,8 @@ abstract class $UserBookModelCopyWith<$Res> {
       String author,
       String imageUrl,
       int progress,
+      double rating,
+      bool completed,
       DateTime? lastRed,
       DateTime? started});
 }
@@ -68,6 +72,8 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
+    Object? rating = null,
+    Object? completed = null,
     Object? lastRed = freezed,
     Object? started = freezed,
   }) {
@@ -92,6 +98,14 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastRed: freezed == lastRed
           ? _value.lastRed
           : lastRed // ignore: cast_nullable_to_non_nullable
@@ -118,6 +132,8 @@ abstract class _$$UserBookModelImplCopyWith<$Res>
       String author,
       String imageUrl,
       int progress,
+      double rating,
+      bool completed,
       DateTime? lastRed,
       DateTime? started});
 }
@@ -138,6 +154,8 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
+    Object? rating = null,
+    Object? completed = null,
     Object? lastRed = freezed,
     Object? started = freezed,
   }) {
@@ -162,6 +180,14 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastRed: freezed == lastRed
           ? _value.lastRed
           : lastRed // ignore: cast_nullable_to_non_nullable
@@ -183,6 +209,8 @@ class _$UserBookModelImpl implements _UserBookModel {
       this.author = '',
       this.imageUrl = '',
       this.progress = 0,
+      this.rating = 0.0,
+      this.completed = false,
       this.lastRed,
       this.started});
 
@@ -205,13 +233,19 @@ class _$UserBookModelImpl implements _UserBookModel {
   @JsonKey()
   final int progress;
   @override
+  @JsonKey()
+  final double rating;
+  @override
+  @JsonKey()
+  final bool completed;
+  @override
   final DateTime? lastRed;
   @override
   final DateTime? started;
 
   @override
   String toString() {
-    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, lastRed: $lastRed, started: $started)';
+    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, rating: $rating, completed: $completed, lastRed: $lastRed, started: $started)';
   }
 
   @override
@@ -226,14 +260,17 @@ class _$UserBookModelImpl implements _UserBookModel {
                 other.imageUrl == imageUrl) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.completed, completed) ||
+                other.completed == completed) &&
             (identical(other.lastRed, lastRed) || other.lastRed == lastRed) &&
             (identical(other.started, started) || other.started == started));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, uid, title, author, imageUrl, progress, lastRed, started);
+  int get hashCode => Object.hash(runtimeType, uid, title, author, imageUrl,
+      progress, rating, completed, lastRed, started);
 
   @JsonKey(ignore: true)
   @override
@@ -256,6 +293,8 @@ abstract class _UserBookModel implements UserBookModel {
       final String author,
       final String imageUrl,
       final int progress,
+      final double rating,
+      final bool completed,
       final DateTime? lastRed,
       final DateTime? started}) = _$UserBookModelImpl;
 
@@ -272,6 +311,10 @@ abstract class _UserBookModel implements UserBookModel {
   String get imageUrl;
   @override
   int get progress;
+  @override
+  double get rating;
+  @override
+  bool get completed;
   @override
   DateTime? get lastRed;
   @override

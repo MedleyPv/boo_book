@@ -33,7 +33,7 @@ class HomeBloc extends NetworkListBloc<UserBookModel, HomeBlocState>
 
   @override
   Future<List<UserBookModel>> onLoadAsync() {
-    return repository.getUserBooks(userUid);
+    return repository.getUncompletedBooks(userUid);
   }
 
   @override

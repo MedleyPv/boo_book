@@ -72,6 +72,9 @@ class $AssetsIconsGen {
   SvgGenImage get searchBold =>
       const SvgGenImage('assets/icons/search_bold.svg');
 
+  /// File path: assets/icons/start.svg
+  SvgGenImage get start => const SvgGenImage('assets/icons/start.svg');
+
   /// File path: assets/icons/xmark.svg
   SvgGenImage get xmark => const SvgGenImage('assets/icons/xmark.svg');
 
@@ -93,6 +96,7 @@ class $AssetsIconsGen {
         qr,
         search,
         searchBold,
+        start,
         xmark
       ];
 }
