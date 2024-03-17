@@ -19,6 +19,7 @@ class UserBookModel with _$UserBookModel {
     @Default(0) int progress,
     @Default(0.0) double rating,
     @Default(false) bool completed,
+    @Default('') String review,
     DateTime? lastRed,
     DateTime? started,
   }) = _UserBookModel;

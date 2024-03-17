@@ -44,6 +44,8 @@ class LibraryScreen extends StatelessWidget implements AutoRouteWrapper {
                   itemCount: state.data.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
+                    crossAxisSpacing: 14,
+                    mainAxisSpacing: 16,
                     mainAxisExtent: 254,
                   ),
                   itemBuilder: (_, index) {
