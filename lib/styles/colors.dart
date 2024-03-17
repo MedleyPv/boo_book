@@ -7,6 +7,8 @@ class AppColors {
   static const navigationBar = Color(0xFFE8EAEB);
   static const numberButton = Color(0xFF868D92);
 
+  static const disabledColor = Color(0xFFDFDFDF);
+
   static const currentDay = Color(0xFFEF001A);
   static const hint = Color(0xFF8B9196);
   static const star = Color(0xFFF8BD00);

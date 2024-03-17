@@ -6,15 +6,15 @@ class BodyContainer extends StatelessWidget {
   const BodyContainer({
     super.key,
     required this.title,
-    required this.topAction,
     required this.child,
+    this.topAction,
     this.counter,
     this.childPadding,
   });
 
   final String title;
   final int? counter;
-  final Widget topAction;
+  final Widget? topAction;
 
   final EdgeInsets? childPadding;
   final Widget child;
@@ -67,7 +67,7 @@ class BodyContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                topAction,
+                if (topAction != null) topAction!,
               ],
             ),
           ),

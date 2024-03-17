@@ -15,6 +15,7 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
       progress: json['progress'] as int? ?? 0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       completed: json['completed'] as bool? ?? false,
+      review: json['review'] as String? ?? '',
       lastRed: json['lastRed'] == null
           ? null
           : DateTime.parse(json['lastRed'] as String),
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
       'progress': instance.progress,
       'rating': instance.rating,
       'completed': instance.completed,
+      'review': instance.review,
       'lastRed': instance.lastRed?.toIso8601String(),
       'started': instance.started?.toIso8601String(),
     };
