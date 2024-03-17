@@ -75,7 +75,7 @@ class BodyContainer extends StatelessWidget {
             padding: childPadding ??
                 const EdgeInsets.symmetric(
                   horizontal: 20,
-                ).copyWith(top: 10, bottom: 26),
+                ).copyWith(top: 12, bottom: 26),
             child: child,
           ),
         ],

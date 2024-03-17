@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:boo_book/styles/index.dart';
 
-// TODO(Pasha): Refactor to sliver app bar
+// TODO(Pasha): Add filters + sliver app bar
 class LandingPageScaffold extends StatelessWidget {
   const LandingPageScaffold({
     super.key,

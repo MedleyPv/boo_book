@@ -43,9 +43,8 @@ class _ReviewItem extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(
-        vertical: 12,
         horizontal: 10,
-      ),
+      ).copyWith(top: 12, bottom: 14),
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(12),

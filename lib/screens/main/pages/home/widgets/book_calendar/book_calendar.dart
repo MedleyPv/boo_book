@@ -24,12 +24,22 @@ class _BookCalendarState extends State<BookCalendar> {
   Widget build(BuildContext context) {
     return BodyContainer(
       title: 'Календар',
+      childPadding: const EdgeInsets.symmetric(
+        horizontal: 20,
+      ).copyWith(top: 16, bottom: 26),
       topAction: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () => setState(() {
           expanded = !expanded;
         }),
-        child: Assets.icons.arrowLeft.svg(),
+        child: Container(
+          margin: const EdgeInsets.all(4),
+          child: AnimatedRotation(
+            turns: expanded ? 0.25 : 0,
+            duration: const Duration(milliseconds: 200),
+            child: Assets.icons.arrowLeft.svg(),
+          ),
+        ),
       ),
       child: AnimatedCrossFade(
         firstCurve: Curves.slowMiddle,

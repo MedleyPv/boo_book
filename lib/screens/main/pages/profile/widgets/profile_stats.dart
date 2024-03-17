@@ -42,7 +42,6 @@ class ProfileStats extends StatelessWidget {
 
 class _InfoItem extends StatelessWidget {
   const _InfoItem({
-    super.key,
     required this.number,
     required this.label,
   });
