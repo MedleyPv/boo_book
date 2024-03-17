@@ -1,19 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:boo_book/blocs/index.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/router/index.dart';
-import 'package:boo_book/screens/main/pages/library/library_bloc.dart';
 import 'package:boo_book/widgets/index.dart';
 import 'widgets/index.dart';
 
 @RoutePage()
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatelessWidget implements AutoRouteWrapper {
   const ProfileScreen({super.key});
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    context.read<LibraryBloc>().initLoadAsyncFuture();
+
+    return this;
+  }
 
   @override
   Widget build(BuildContext context) {

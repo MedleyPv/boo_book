@@ -4,9 +4,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:boo_book/blocs/index.dart';
-import 'package:boo_book/core/extensions/context_extensions.dart';
+import 'package:boo_book/core/index.dart';
 import 'package:boo_book/router/index.dart';
-import 'package:boo_book/screens/main/pages/home/home_bloc.dart';
 import 'package:boo_book/styles/index.dart';
 import 'package:boo_book/widgets/index.dart';
 import 'widgets/index.dart';

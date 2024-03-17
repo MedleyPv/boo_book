@@ -4,8 +4,6 @@ import 'package:boo_book/localization/index.dart';
 import 'package:boo_book/router/index.dart';
 import 'package:boo_book/styles/index.dart';
 
-// TODO(Pasha): Fix nav bar jumping
-
 @RoutePage()
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -13,6 +11,10 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     EasyLocalization.of(context);
+
+    const iconHeight = 26.0;
+
+    final bottomPadding = MediaQuery.viewPaddingOf(context).bottom;
 
     return AutoTabsScaffold(
       routes: const [
@@ -22,20 +24,22 @@ class MainScreen extends StatelessWidget {
         ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
-        return DecoratedBox(
+        return Container(
+          height: 68 + bottomPadding,
+          alignment: Alignment.bottomCenter,
           decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 1,
-                blurRadius: 3,
-                offset: Offset(0, 3),
-              ),
-            ],
+            color: AppColors.navigationBar,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
           ),
           child: BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
+            iconSize: 32,
+            elevation: 0,
             showSelectedLabels: false,
             showUnselectedLabels: false,
+            backgroundColor: Colors.transparent,
+            currentIndex: tabsRouter.activeIndex,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
               if (index == 2) {
@@ -49,14 +53,14 @@ class MainScreen extends StatelessWidget {
             items: [
               BottomNavigationBarItem(
                 icon: tabsRouter.activeIndex == 0
-                    ? Assets.icons.homeBold.svg()
-                    : Assets.icons.home.svg(),
+                    ? Assets.icons.homeBold.svg(height: iconHeight)
+                    : Assets.icons.home.svg(height: iconHeight),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: tabsRouter.activeIndex == 1
-                    ? Assets.icons.libraryBold.svg()
-                    : Assets.icons.library.svg(),
+                    ? Assets.icons.libraryBold.svg(height: iconHeight)
+                    : Assets.icons.library.svg(height: iconHeight),
                 label: 'Library',
               ),
               BottomNavigationBarItem(
@@ -65,14 +69,14 @@ class MainScreen extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: tabsRouter.activeIndex == 2
-                    ? Assets.icons.communityBold.svg()
-                    : Assets.icons.community.svg(),
+                    ? Assets.icons.communityBold.svg(height: iconHeight - 3)
+                    : Assets.icons.community.svg(height: iconHeight - 3),
                 label: 'Community',
               ),
               BottomNavigationBarItem(
                 icon: tabsRouter.activeIndex == 3
-                    ? Assets.icons.profileBold.svg()
-                    : Assets.icons.profile.svg(),
+                    ? Assets.icons.profileBold.svg(height: iconHeight)
+                    : Assets.icons.profile.svg(height: iconHeight),
                 label: 'Profile',
               ),
             ],
