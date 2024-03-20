@@ -43,7 +43,7 @@ class MainScreen extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
               if (index == 2) {
-                // TODO(Pasha): add navigation to search page
+                context.pushRoute(const SearchRoute());
               } else {
                 tabsRouter.setActiveIndex(
                   index > 2 ? index - 1 : index,

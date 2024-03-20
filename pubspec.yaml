@@ -45,6 +45,8 @@ dependencies:
   #this package extends the native Iterable type with all of the LINQ methods that do not exist in native Dart
   darq: ^2.0.0
 
+  http: ^1.2.1
+
   #local storage
   shared_preferences: ^2.2.2
   flutter_secure_storage: ^9.0.0

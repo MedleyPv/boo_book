@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:boo_book/router/index.dart';
 
 import 'router.gr.dart';
 
@@ -40,7 +41,10 @@ class AppRouter extends $AppRouter {
                 ),
               ],
             ),
-            //
+            CustomRoute(
+              page: SearchRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideBottom,
+            ),
           ],
         ),
       ],
