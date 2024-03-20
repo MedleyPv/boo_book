@@ -53,3 +53,54 @@ Map<String, dynamic> _$$CalendarBookModelImplToJson(
       'imageUrl': instance.imageUrl,
       'date': const TimestampSerializer().toJson(instance.date),
     };
+
+_$BookSearchModelImpl _$$BookSearchModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookSearchModelImpl(
+      id: json['id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      authors: (json['authors'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      publisher: json['publisher'] as String? ?? '',
+      language: json['language'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      pageCount: json['pageCount'] as int?,
+      categories: (json['categories'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      imageLinks: json['imageLinks'] == null
+          ? const SearchImageLinksModel()
+          : SearchImageLinksModel.fromJson(
+              json['imageLinks'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$BookSearchModelImplToJson(
+        _$BookSearchModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'authors': instance.authors,
+      'publisher': instance.publisher,
+      'language': instance.language,
+      'description': instance.description,
+      'pageCount': instance.pageCount,
+      'categories': instance.categories,
+      'imageLinks': instance.imageLinks,
+    };
+
+_$SearchImageLinksModelImpl _$$SearchImageLinksModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SearchImageLinksModelImpl(
+      smallThumbnail: json['smallThumbnail'] as String? ?? '',
+      thumbnail: json['thumbnail'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$SearchImageLinksModelImplToJson(
+        _$SearchImageLinksModelImpl instance) =>
+    <String, dynamic>{
+      'smallThumbnail': instance.smallThumbnail,
+      'thumbnail': instance.thumbnail,
+    };

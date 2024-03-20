@@ -529,3 +529,519 @@ abstract class _CalendarBookModel implements CalendarBookModel {
   _$$CalendarBookModelImplCopyWith<_$CalendarBookModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+BookSearchModel _$BookSearchModelFromJson(Map<String, dynamic> json) {
+  return _BookSearchModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookSearchModel {
+  String get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  List<String> get authors => throw _privateConstructorUsedError;
+  String get publisher => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  int? get pageCount => throw _privateConstructorUsedError;
+  List<String> get categories => throw _privateConstructorUsedError;
+  SearchImageLinksModel get imageLinks => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookSearchModelCopyWith<BookSearchModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookSearchModelCopyWith<$Res> {
+  factory $BookSearchModelCopyWith(
+          BookSearchModel value, $Res Function(BookSearchModel) then) =
+      _$BookSearchModelCopyWithImpl<$Res, BookSearchModel>;
+  @useResult
+  $Res call(
+      {String id,
+      String title,
+      List<String> authors,
+      String publisher,
+      String language,
+      String description,
+      int? pageCount,
+      List<String> categories,
+      SearchImageLinksModel imageLinks});
+
+  $SearchImageLinksModelCopyWith<$Res> get imageLinks;
+}
+
+/// @nodoc
+class _$BookSearchModelCopyWithImpl<$Res, $Val extends BookSearchModel>
+    implements $BookSearchModelCopyWith<$Res> {
+  _$BookSearchModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? authors = null,
+    Object? publisher = null,
+    Object? language = null,
+    Object? description = null,
+    Object? pageCount = freezed,
+    Object? categories = null,
+    Object? imageLinks = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      pageCount: freezed == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      imageLinks: null == imageLinks
+          ? _value.imageLinks
+          : imageLinks // ignore: cast_nullable_to_non_nullable
+              as SearchImageLinksModel,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchImageLinksModelCopyWith<$Res> get imageLinks {
+    return $SearchImageLinksModelCopyWith<$Res>(_value.imageLinks, (value) {
+      return _then(_value.copyWith(imageLinks: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$BookSearchModelImplCopyWith<$Res>
+    implements $BookSearchModelCopyWith<$Res> {
+  factory _$$BookSearchModelImplCopyWith(_$BookSearchModelImpl value,
+          $Res Function(_$BookSearchModelImpl) then) =
+      __$$BookSearchModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String title,
+      List<String> authors,
+      String publisher,
+      String language,
+      String description,
+      int? pageCount,
+      List<String> categories,
+      SearchImageLinksModel imageLinks});
+
+  @override
+  $SearchImageLinksModelCopyWith<$Res> get imageLinks;
+}
+
+/// @nodoc
+class __$$BookSearchModelImplCopyWithImpl<$Res>
+    extends _$BookSearchModelCopyWithImpl<$Res, _$BookSearchModelImpl>
+    implements _$$BookSearchModelImplCopyWith<$Res> {
+  __$$BookSearchModelImplCopyWithImpl(
+      _$BookSearchModelImpl _value, $Res Function(_$BookSearchModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? authors = null,
+    Object? publisher = null,
+    Object? language = null,
+    Object? description = null,
+    Object? pageCount = freezed,
+    Object? categories = null,
+    Object? imageLinks = null,
+  }) {
+    return _then(_$BookSearchModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value._authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      pageCount: freezed == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      imageLinks: null == imageLinks
+          ? _value.imageLinks
+          : imageLinks // ignore: cast_nullable_to_non_nullable
+              as SearchImageLinksModel,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookSearchModelImpl implements _BookSearchModel {
+  const _$BookSearchModelImpl(
+      {this.id = '',
+      this.title = '',
+      final List<String> authors = const [],
+      this.publisher = '',
+      this.language = '',
+      this.description = '',
+      this.pageCount,
+      final List<String> categories = const [],
+      this.imageLinks = const SearchImageLinksModel()})
+      : _authors = authors,
+        _categories = categories;
+
+  factory _$BookSearchModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookSearchModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String title;
+  final List<String> _authors;
+  @override
+  @JsonKey()
+  List<String> get authors {
+    if (_authors is EqualUnmodifiableListView) return _authors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authors);
+  }
+
+  @override
+  @JsonKey()
+  final String publisher;
+  @override
+  @JsonKey()
+  final String language;
+  @override
+  @JsonKey()
+  final String description;
+  @override
+  final int? pageCount;
+  final List<String> _categories;
+  @override
+  @JsonKey()
+  List<String> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
+  @override
+  @JsonKey()
+  final SearchImageLinksModel imageLinks;
+
+  @override
+  String toString() {
+    return 'BookSearchModel(id: $id, title: $title, authors: $authors, publisher: $publisher, language: $language, description: $description, pageCount: $pageCount, categories: $categories, imageLinks: $imageLinks)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookSearchModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._authors, _authors) &&
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.pageCount, pageCount) ||
+                other.pageCount == pageCount) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories) &&
+            (identical(other.imageLinks, imageLinks) ||
+                other.imageLinks == imageLinks));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      const DeepCollectionEquality().hash(_authors),
+      publisher,
+      language,
+      description,
+      pageCount,
+      const DeepCollectionEquality().hash(_categories),
+      imageLinks);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookSearchModelImplCopyWith<_$BookSearchModelImpl> get copyWith =>
+      __$$BookSearchModelImplCopyWithImpl<_$BookSearchModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookSearchModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookSearchModel implements BookSearchModel {
+  const factory _BookSearchModel(
+      {final String id,
+      final String title,
+      final List<String> authors,
+      final String publisher,
+      final String language,
+      final String description,
+      final int? pageCount,
+      final List<String> categories,
+      final SearchImageLinksModel imageLinks}) = _$BookSearchModelImpl;
+
+  factory _BookSearchModel.fromJson(Map<String, dynamic> json) =
+      _$BookSearchModelImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  List<String> get authors;
+  @override
+  String get publisher;
+  @override
+  String get language;
+  @override
+  String get description;
+  @override
+  int? get pageCount;
+  @override
+  List<String> get categories;
+  @override
+  SearchImageLinksModel get imageLinks;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookSearchModelImplCopyWith<_$BookSearchModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SearchImageLinksModel _$SearchImageLinksModelFromJson(
+    Map<String, dynamic> json) {
+  return _SearchImageLinksModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SearchImageLinksModel {
+  String get smallThumbnail => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SearchImageLinksModelCopyWith<SearchImageLinksModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchImageLinksModelCopyWith<$Res> {
+  factory $SearchImageLinksModelCopyWith(SearchImageLinksModel value,
+          $Res Function(SearchImageLinksModel) then) =
+      _$SearchImageLinksModelCopyWithImpl<$Res, SearchImageLinksModel>;
+  @useResult
+  $Res call({String smallThumbnail, String thumbnail});
+}
+
+/// @nodoc
+class _$SearchImageLinksModelCopyWithImpl<$Res,
+        $Val extends SearchImageLinksModel>
+    implements $SearchImageLinksModelCopyWith<$Res> {
+  _$SearchImageLinksModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? smallThumbnail = null,
+    Object? thumbnail = null,
+  }) {
+    return _then(_value.copyWith(
+      smallThumbnail: null == smallThumbnail
+          ? _value.smallThumbnail
+          : smallThumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SearchImageLinksModelImplCopyWith<$Res>
+    implements $SearchImageLinksModelCopyWith<$Res> {
+  factory _$$SearchImageLinksModelImplCopyWith(
+          _$SearchImageLinksModelImpl value,
+          $Res Function(_$SearchImageLinksModelImpl) then) =
+      __$$SearchImageLinksModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String smallThumbnail, String thumbnail});
+}
+
+/// @nodoc
+class __$$SearchImageLinksModelImplCopyWithImpl<$Res>
+    extends _$SearchImageLinksModelCopyWithImpl<$Res,
+        _$SearchImageLinksModelImpl>
+    implements _$$SearchImageLinksModelImplCopyWith<$Res> {
+  __$$SearchImageLinksModelImplCopyWithImpl(_$SearchImageLinksModelImpl _value,
+      $Res Function(_$SearchImageLinksModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? smallThumbnail = null,
+    Object? thumbnail = null,
+  }) {
+    return _then(_$SearchImageLinksModelImpl(
+      smallThumbnail: null == smallThumbnail
+          ? _value.smallThumbnail
+          : smallThumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SearchImageLinksModelImpl implements _SearchImageLinksModel {
+  const _$SearchImageLinksModelImpl(
+      {this.smallThumbnail = '', this.thumbnail = ''});
+
+  factory _$SearchImageLinksModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchImageLinksModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String smallThumbnail;
+  @override
+  @JsonKey()
+  final String thumbnail;
+
+  @override
+  String toString() {
+    return 'SearchImageLinksModel(smallThumbnail: $smallThumbnail, thumbnail: $thumbnail)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchImageLinksModelImpl &&
+            (identical(other.smallThumbnail, smallThumbnail) ||
+                other.smallThumbnail == smallThumbnail) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, smallThumbnail, thumbnail);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchImageLinksModelImplCopyWith<_$SearchImageLinksModelImpl>
+      get copyWith => __$$SearchImageLinksModelImplCopyWithImpl<
+          _$SearchImageLinksModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SearchImageLinksModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SearchImageLinksModel implements SearchImageLinksModel {
+  const factory _SearchImageLinksModel(
+      {final String smallThumbnail,
+      final String thumbnail}) = _$SearchImageLinksModelImpl;
+
+  factory _SearchImageLinksModel.fromJson(Map<String, dynamic> json) =
+      _$SearchImageLinksModelImpl.fromJson;
+
+  @override
+  String get smallThumbnail;
+  @override
+  String get thumbnail;
+  @override
+  @JsonKey(ignore: true)
+  _$$SearchImageLinksModelImplCopyWith<_$SearchImageLinksModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

@@ -39,3 +39,32 @@ class CalendarBookModel with _$CalendarBookModel {
   factory CalendarBookModel.fromJson(Map<String, dynamic> json) =>
       _$CalendarBookModelFromJson(json);
 }
+
+@freezed
+class BookSearchModel with _$BookSearchModel {
+  const factory BookSearchModel({
+    @Default('') String id,
+    @Default('') String title,
+    @Default([]) List<String> authors,
+    @Default('') String publisher,
+    @Default('') String language,
+    @Default('') String description,
+    int? pageCount,
+    @Default([]) List<String> categories,
+    @Default(SearchImageLinksModel()) SearchImageLinksModel imageLinks,
+  }) = _BookSearchModel;
+
+  factory BookSearchModel.fromJson(Map<String, dynamic> json) =>
+      _$BookSearchModelFromJson(json);
+}
+
+@freezed
+class SearchImageLinksModel with _$SearchImageLinksModel {
+  const factory SearchImageLinksModel({
+    @Default('') String smallThumbnail,
+    @Default('') String thumbnail,
+  }) = _SearchImageLinksModel;
+
+  factory SearchImageLinksModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchImageLinksModelFromJson(json);
+}

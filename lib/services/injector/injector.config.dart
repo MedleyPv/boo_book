@@ -12,9 +12,11 @@ import 'package:boo_book/blocs/auth/auth_bloc.dart' as _i5;
 import 'package:boo_book/repositories/auth_repository.dart' as _i3;
 import 'package:boo_book/repositories/books_repository.dart' as _i7;
 import 'package:boo_book/repositories/index.dart' as _i6;
+import 'package:boo_book/repositories/search_repository.dart' as _i10;
 import 'package:boo_book/repositories/user_repository.dart' as _i4;
 import 'package:boo_book/screens/main/pages/home/home_bloc.dart' as _i8;
 import 'package:boo_book/screens/main/pages/library/library_bloc.dart' as _i9;
+import 'package:boo_book/screens/search/search_bloc.dart' as _i11;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -53,6 +55,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i9.LibraryBloc>(() => _i9.LibraryBloc(
           userUid: gh<String>(instanceName: 'userUid'),
           repository: gh<_i7.BooksRepository>(),
+        ));
+    gh.factory<_i10.SearchRepository>(() => _i10.SearchRepository());
+    gh.factory<_i11.SearchBloc>(() => _i11.SearchBloc(
+          searchRepository: gh<_i6.SearchRepository>(),
+          booksRepository: gh<_i6.BooksRepository>(),
         ));
     return this;
   }
