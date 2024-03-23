@@ -16,11 +16,9 @@ class HomeBloc extends NetworkListBloc<UserBookModel, HomeBlocState>
             HomeBlocState>,
         NetworkExtraBlocMixin<List<UserBookModel>, CalendarBookCollection,
             HomeBlocState> {
-  final String userUid;
   final BooksRepository repository;
 
   HomeBloc({
-    @Named('userUid') required this.userUid,
     required this.repository,
   }) : super(
           const HomeBlocState(
@@ -33,7 +31,7 @@ class HomeBloc extends NetworkListBloc<UserBookModel, HomeBlocState>
 
   @override
   Future<List<UserBookModel>> onLoadAsync() {
-    return repository.getUncompletedBooks(userUid);
+    return repository.getUncompletedBooks();
   }
 
   @override
@@ -43,7 +41,6 @@ class HomeBloc extends NetworkListBloc<UserBookModel, HomeBlocState>
     final to = DateTime(now.year, now.month + 1, 0);
 
     final calendarData = await repository.getCalendarData(
-      userUid,
       from: from,
       to: to,
     );

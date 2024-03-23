@@ -26,7 +26,6 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
       'title': instance.title,
       'author': instance.author,
       'imageUrl': instance.imageUrl,
@@ -41,7 +40,7 @@ Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
 _$CalendarBookModelImpl _$$CalendarBookModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CalendarBookModelImpl(
-      uid: json['uid'] as String? ?? '',
+      bookUid: json['bookUid'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
       date: const TimestampSerializer().fromJson(json['date']),
     );
@@ -49,7 +48,7 @@ _$CalendarBookModelImpl _$$CalendarBookModelImplFromJson(
 Map<String, dynamic> _$$CalendarBookModelImplToJson(
         _$CalendarBookModelImpl instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'bookUid': instance.bookUid,
       'imageUrl': instance.imageUrl,
       'date': const TimestampSerializer().toJson(instance.date),
     };

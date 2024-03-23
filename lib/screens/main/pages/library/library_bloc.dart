@@ -7,17 +7,15 @@ typedef LibraryState = NetworkListState<UserBookModel>;
 
 @lazySingleton
 class LibraryBloc extends NetworkListBloc<UserBookModel, LibraryState> {
-  final String userUid;
   final BooksRepository repository;
 
   LibraryBloc({
-    @Named('userUid') required this.userUid,
     required this.repository,
   }) : super(const LibraryState(data: []));
 
   @override
   Future<List<UserBookModel>> onLoadAsync() {
-    return repository.getUserBooks(userUid);
+    return repository.getUserBooks();
   }
 
   @override
