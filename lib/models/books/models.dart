@@ -21,6 +21,7 @@ class UserBookModel with _$UserBookModel {
     @Default('') String author,
     @Default('') String imageUrl,
     @Default(0) int progress,
+    @Default(0) int pageCount,
     @Default(0.0) double rating,
     @Default(false) bool completed,
     @Default('') String review,
@@ -62,7 +63,7 @@ class BookSearchModel with _$BookSearchModel {
     @Default('') String publisher,
     @Default('') String language,
     @Default('') String description,
-    int? pageCount,
+    @Default(0) int pageCount,
     @Default([]) List<String> categories,
     @Default(SearchImageLinksModel()) SearchImageLinksModel imageLinks,
   }) = _BookSearchModel;

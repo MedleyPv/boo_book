@@ -26,6 +26,7 @@ mixin _$UserBookModel {
   String get author => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get progress => throw _privateConstructorUsedError;
+  int get pageCount => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
   String get review => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $UserBookModelCopyWith<$Res> {
       String author,
       String imageUrl,
       int progress,
+      int pageCount,
       double rating,
       bool completed,
       String review,
@@ -75,6 +77,7 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
+    Object? pageCount = null,
     Object? rating = null,
     Object? completed = null,
     Object? review = null,
@@ -101,6 +104,10 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
               as int,
       rating: null == rating
           ? _value.rating
@@ -140,6 +147,7 @@ abstract class _$$UserBookModelImplCopyWith<$Res>
       String author,
       String imageUrl,
       int progress,
+      int pageCount,
       double rating,
       bool completed,
       String review,
@@ -163,6 +171,7 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
+    Object? pageCount = null,
     Object? rating = null,
     Object? completed = null,
     Object? review = null,
@@ -189,6 +198,10 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
               as int,
       rating: null == rating
           ? _value.rating
@@ -223,6 +236,7 @@ class _$UserBookModelImpl extends _UserBookModel {
       this.author = '',
       this.imageUrl = '',
       this.progress = 0,
+      this.pageCount = 0,
       this.rating = 0.0,
       this.completed = false,
       this.review = '',
@@ -250,6 +264,9 @@ class _$UserBookModelImpl extends _UserBookModel {
   final int progress;
   @override
   @JsonKey()
+  final int pageCount;
+  @override
+  @JsonKey()
   final double rating;
   @override
   @JsonKey()
@@ -264,7 +281,7 @@ class _$UserBookModelImpl extends _UserBookModel {
 
   @override
   String toString() {
-    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, rating: $rating, completed: $completed, review: $review, lastRed: $lastRed, started: $started)';
+    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, pageCount: $pageCount, rating: $rating, completed: $completed, review: $review, lastRed: $lastRed, started: $started)';
   }
 
   @override
@@ -279,6 +296,8 @@ class _$UserBookModelImpl extends _UserBookModel {
                 other.imageUrl == imageUrl) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
+            (identical(other.pageCount, pageCount) ||
+                other.pageCount == pageCount) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.completed, completed) ||
                 other.completed == completed) &&
@@ -290,7 +309,7 @@ class _$UserBookModelImpl extends _UserBookModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, uid, title, author, imageUrl,
-      progress, rating, completed, review, lastRed, started);
+      progress, pageCount, rating, completed, review, lastRed, started);
 
   @JsonKey(ignore: true)
   @override
@@ -313,6 +332,7 @@ abstract class _UserBookModel extends UserBookModel {
       final String author,
       final String imageUrl,
       final int progress,
+      final int pageCount,
       final double rating,
       final bool completed,
       final String review,
@@ -334,6 +354,8 @@ abstract class _UserBookModel extends UserBookModel {
   String get imageUrl;
   @override
   int get progress;
+  @override
+  int get pageCount;
   @override
   double get rating;
   @override
@@ -546,7 +568,7 @@ mixin _$BookSearchModel {
   String get publisher => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  int? get pageCount => throw _privateConstructorUsedError;
+  int get pageCount => throw _privateConstructorUsedError;
   List<String> get categories => throw _privateConstructorUsedError;
   SearchImageLinksModel get imageLinks => throw _privateConstructorUsedError;
 
@@ -569,7 +591,7 @@ abstract class $BookSearchModelCopyWith<$Res> {
       String publisher,
       String language,
       String description,
-      int? pageCount,
+      int pageCount,
       List<String> categories,
       SearchImageLinksModel imageLinks});
 
@@ -595,7 +617,7 @@ class _$BookSearchModelCopyWithImpl<$Res, $Val extends BookSearchModel>
     Object? publisher = null,
     Object? language = null,
     Object? description = null,
-    Object? pageCount = freezed,
+    Object? pageCount = null,
     Object? categories = null,
     Object? imageLinks = null,
   }) {
@@ -624,10 +646,10 @@ class _$BookSearchModelCopyWithImpl<$Res, $Val extends BookSearchModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      pageCount: freezed == pageCount
+      pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
@@ -663,7 +685,7 @@ abstract class _$$BookSearchModelImplCopyWith<$Res>
       String publisher,
       String language,
       String description,
-      int? pageCount,
+      int pageCount,
       List<String> categories,
       SearchImageLinksModel imageLinks});
 
@@ -688,7 +710,7 @@ class __$$BookSearchModelImplCopyWithImpl<$Res>
     Object? publisher = null,
     Object? language = null,
     Object? description = null,
-    Object? pageCount = freezed,
+    Object? pageCount = null,
     Object? categories = null,
     Object? imageLinks = null,
   }) {
@@ -717,10 +739,10 @@ class __$$BookSearchModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      pageCount: freezed == pageCount
+      pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
@@ -743,7 +765,7 @@ class _$BookSearchModelImpl implements _BookSearchModel {
       this.publisher = '',
       this.language = '',
       this.description = '',
-      this.pageCount,
+      this.pageCount = 0,
       final List<String> categories = const [],
       this.imageLinks = const SearchImageLinksModel()})
       : _authors = authors,
@@ -777,7 +799,8 @@ class _$BookSearchModelImpl implements _BookSearchModel {
   @JsonKey()
   final String description;
   @override
-  final int? pageCount;
+  @JsonKey()
+  final int pageCount;
   final List<String> _categories;
   @override
   @JsonKey()
@@ -855,7 +878,7 @@ abstract class _BookSearchModel implements BookSearchModel {
       final String publisher,
       final String language,
       final String description,
-      final int? pageCount,
+      final int pageCount,
       final List<String> categories,
       final SearchImageLinksModel imageLinks}) = _$BookSearchModelImpl;
 
@@ -875,7 +898,7 @@ abstract class _BookSearchModel implements BookSearchModel {
   @override
   String get description;
   @override
-  int? get pageCount;
+  int get pageCount;
   @override
   List<String> get categories;
   @override

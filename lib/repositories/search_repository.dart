@@ -19,7 +19,7 @@ class SearchRepository {
   }
 
   Future<BookSearchModel> getBookBySearchId(String id) async {
-    final queryUrl = '$endpointUrl' 'volumes/$id' '?projection=lite';
+    final queryUrl = '$endpointUrl' 'volumes/$id';
 
     final response = await http.get(Uri.parse(queryUrl));
     final json = jsonDecode(response.body);
@@ -38,8 +38,7 @@ class SearchRepository {
         '&maxResults=${pagination.limit}'
         '&startIndex=${pagination.startOffset}'
         '&langRestrict="ru"'
-        '&printType=books'
-        '&projection=lite';
+        '&printType=books';
 
     final response = await http.get(Uri.parse(queryUrl));
 

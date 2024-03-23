@@ -78,6 +78,7 @@ class SearchBookDetailsModalBloc extends FormBloc<UserBookModel, String> {
         title: currentBook.title,
         author: currentBook.authors.firstOrNull ?? '',
         imageUrl: currentBook.imageLinks.smallThumbnail,
+        pageCount: currentBook.pageCount,
       );
 
       final response = await booksRepository.addBookToCollection(payload);

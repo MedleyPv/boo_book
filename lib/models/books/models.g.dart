@@ -13,6 +13,7 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
       author: json['author'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
       progress: json['progress'] as int? ?? 0,
+      pageCount: json['pageCount'] as int? ?? 0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       completed: json['completed'] as bool? ?? false,
       review: json['review'] as String? ?? '',
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
       'author': instance.author,
       'imageUrl': instance.imageUrl,
       'progress': instance.progress,
+      'pageCount': instance.pageCount,
       'rating': instance.rating,
       'completed': instance.completed,
       'review': instance.review,
@@ -65,7 +67,7 @@ _$BookSearchModelImpl _$$BookSearchModelImplFromJson(
       publisher: json['publisher'] as String? ?? '',
       language: json['language'] as String? ?? '',
       description: json['description'] as String? ?? '',
-      pageCount: json['pageCount'] as int?,
+      pageCount: json['pageCount'] as int? ?? 0,
       categories: (json['categories'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
