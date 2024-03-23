@@ -1,5 +1,6 @@
-import 'package:boo_book/styles/index.dart';
 import 'package:flutter/material.dart';
+
+import 'package:boo_book/styles/index.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({

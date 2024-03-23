@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:darq/darq.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:boo_book/blocs/index.dart';
@@ -58,9 +59,18 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
                     ),
                   ),
                   child: Column(
-                    children: state.data
-                        .map((book) => ProgressBookCard(book: book))
-                        .toList(),
+                    children: state.data.select(
+                      (book, index) {
+                        final isLast = index == state.data.length - 1;
+
+                        return Padding(
+                          padding: isLast
+                              ? EdgeInsets.zero
+                              : const EdgeInsets.only(bottom: 15),
+                          child: ProgressBookCard(book: book),
+                        );
+                      },
+                    ).toList(),
                   ),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -25,8 +26,18 @@ class ProgressBookCard extends StatelessWidget {
           CachedNetworkImage(
             width: 84,
             height: 130,
-            fit: BoxFit.cover,
             imageUrl: book.imageUrl,
+            imageBuilder: (_, imageProvider) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(width: 14),
           Expanded(

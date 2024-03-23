@@ -1,7 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:boo_book/router/index.dart';
-
-import 'router.gr.dart';
 
 @AutoRouterConfig(
   replaceInRouteName: 'Page|Screen,Route',
@@ -44,6 +41,12 @@ class AppRouter extends $AppRouter {
             CustomRoute(
               page: SearchRoute.page,
               transitionsBuilder: TransitionsBuilders.slideBottom,
+            ),
+            AutoRoute(
+              page: SearchBookDetailsModalRoute.page,
+            ),
+            AutoRoute(
+              page: ViewAllReviewsModal.page,
             ),
           ],
         ),

@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import 'package:boo_book/core/extensions/list_extensions.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/repositories/index.dart';
-import 'package:injectable/injectable.dart';
 
 typedef SearchState
     = NetworkSearchableExtraListState<BookSearchModel, List<UserBookModel>>;

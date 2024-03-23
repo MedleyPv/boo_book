@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:boo_book/core/index.dart';
 import 'package:boo_book/router/index.dart';
 import 'package:boo_book/services/index.dart';
 import 'package:boo_book/styles/index.dart';
 import 'package:boo_book/widgets/index.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'search_bloc.dart';
 import 'widgets/index.dart';
 
@@ -27,11 +28,8 @@ class SearchScreen extends StatelessWidget implements AutoRouteWrapper {
 
     return LandingPageScaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: const CloseButton(
-          color: Colors.black,
-        ),
+        toolbarHeight: kToolbarHeight / 1.5,
+        leading: const CloseButton(),
         title: Text(
           'Пошук',
           style: textTheme.titleMedium?.copyWith(

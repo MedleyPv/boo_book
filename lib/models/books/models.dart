@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:darq/darq.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:boo_book/core/index.dart';
+import 'package:boo_book/models/index.dart';
 
 part 'models.freezed.dart';
 part 'models.c.dart';
@@ -11,8 +13,10 @@ typedef CalendarBookCollection = Map<DateTime, List<CalendarBookModel>>;
 
 @freezed
 class UserBookModel with _$UserBookModel {
+  const UserBookModel._();
+
   const factory UserBookModel({
-    @Default('') String uid,
+    @JsonKey(includeToJson: false) @Default('') String uid,
     @Default('') String title,
     @Default('') String author,
     @Default('') String imageUrl,
@@ -24,6 +28,15 @@ class UserBookModel with _$UserBookModel {
     DateTime? started,
   }) = _UserBookModel;
 
+  factory UserBookModel.fromSnapshot(
+    QueryDocumentSnapshot<DynamicMap> snapshot,
+  ) {
+    final uid = snapshot.id;
+    final json = snapshot.data();
+
+    return UserBookModel.fromJson(json).copyWith(uid: uid);
+  }
+
   factory UserBookModel.fromJson(Map<String, dynamic> json) =>
       _$UserBookModelFromJson(json);
 }
@@ -31,7 +44,7 @@ class UserBookModel with _$UserBookModel {
 @freezed
 class CalendarBookModel with _$CalendarBookModel {
   const factory CalendarBookModel({
-    @Default('') String uid,
+    @Default('') String bookUid,
     @Default('') String imageUrl,
     @TimestampSerializer() required DateTime date,
   }) = _CalendarBookModel;

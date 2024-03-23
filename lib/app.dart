@@ -19,7 +19,9 @@ class BooBook extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.getAppTheme(context),
         routerConfig: _appRouter.config(
-          navigatorObservers: () => [RouterObserver(LoggerService.instance)],
+          navigatorObservers: () => [
+            RouterObserver(LoggerService.instance),
+          ],
         ),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

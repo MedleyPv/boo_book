@@ -9,7 +9,7 @@ class UserProfile with _$UserProfile {
   const UserProfile._();
 
   const factory UserProfile({
-    @Default('') String uid,
+    @JsonKey(includeToJson: false) @Default('') String uid,
     @Default('') String nickname,
     @Default('') String displayName,
     @Default('') String description,

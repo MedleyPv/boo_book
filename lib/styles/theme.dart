@@ -7,6 +7,13 @@ class AppTheme {
     return ThemeData(
       useMaterial3: false,
       scaffoldBackgroundColor: AppColors.scaffoldBg,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.black,
       ),

@@ -21,7 +21,6 @@ _$UserProfileImpl _$$UserProfileImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserProfileImplToJson(_$UserProfileImpl instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
       'nickname': instance.nickname,
       'displayName': instance.displayName,
       'description': instance.description,
