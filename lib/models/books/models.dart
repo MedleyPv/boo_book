@@ -32,10 +32,10 @@ class UserBookModel with _$UserBookModel {
   }) = _UserBookModel;
 
   factory UserBookModel.fromSnapshot(
-    QueryDocumentSnapshot<DynamicMap> snapshot,
+    DocumentSnapshot<DynamicMap> snapshot,
   ) {
     final uid = snapshot.id;
-    final json = snapshot.data();
+    final json = snapshot.data() ?? <String, dynamic>{};
 
     return UserBookModel.fromJson(json).copyWith(uid: uid);
   }
@@ -46,11 +46,23 @@ class UserBookModel with _$UserBookModel {
 
 @freezed
 class CalendarBookModel with _$CalendarBookModel {
+  const CalendarBookModel._();
+
   const factory CalendarBookModel({
+    @JsonKey(includeToJson: false) @Default('') String uid,
     @Default('') String bookUid,
     @Default('') String imageUrl,
     @TimestampSerializer() required DateTime date,
   }) = _CalendarBookModel;
+
+  factory CalendarBookModel.fromSnapshot(
+    DocumentSnapshot<DynamicMap> snapshot,
+  ) {
+    final uid = snapshot.id;
+    final json = snapshot.data() ?? <String, dynamic>{};
+
+    return CalendarBookModel.fromJson(json).copyWith(uid: uid);
+  }
 
   factory CalendarBookModel.fromJson(Map<String, dynamic> json) =>
       _$CalendarBookModelFromJson(json);
@@ -87,6 +99,8 @@ class SearchImageLinksModel with _$SearchImageLinksModel {
 
 @freezed
 class BookReadingRecord with _$BookReadingRecord {
+  const BookReadingRecord._();
+
   const factory BookReadingRecord({
     required int id,
     required DateTime created,
@@ -94,6 +108,17 @@ class BookReadingRecord with _$BookReadingRecord {
     required int pageCount,
     required int percentage,
   }) = _BookReadingRecord;
+
+  CalendarBookModel toCalendarModel({
+    required String bookUid,
+    required String imageUrl,
+  }) {
+    return CalendarBookModel(
+      bookUid: bookUid,
+      date: created,
+      imageUrl: imageUrl,
+    );
+  }
 
   factory BookReadingRecord.fromJson(Map<String, dynamic> json) =>
       _$BookReadingRecordFromJson(json);

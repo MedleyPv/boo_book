@@ -1,3 +1,4 @@
+import 'package:boo_book/blocs/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,8 +37,16 @@ class ReadingBookModalScreen extends StatelessWidget
   Widget build(BuildContext context) {
     final formBloc = context.read<ReadingBookModalBloc>();
 
-    return CustomFormBlocListener(
+    return CustomFormBlocListener<ReadingBookModalBloc, UserBookModel>(
       formBloc: formBloc,
+      onSuccess: (_, state) {
+        final book = state.response;
+
+        if (book != null) {
+          context.read<HomeBloc>().editItem(book);
+          context.read<LibraryBloc>().editItem(book);
+        }
+      },
       child: LandingPageScaffold(
         appBar: AppBar(),
         safeAreaBottom: false,
@@ -48,6 +57,7 @@ class ReadingBookModalScreen extends StatelessWidget
                 children: [
                   BookAvatarFrame(
                     imageUrl: book.imageUrl,
+                    useChangedImage: true,
                   ),
                   const SizedBox(height: 20),
                   ReadingProgressActionFormBuilder(

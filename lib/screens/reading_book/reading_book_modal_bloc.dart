@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:boo_book/blocs/calendar/calendar_bloc.dart';
+import 'package:boo_book/blocs/index.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
 
@@ -20,10 +22,12 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
   late final ListFieldBloc<BookReadingRecord> records;
 
   final UserBookModel initial;
+  final CalendarBloc calendarBloc;
   final BooksRepository booksRepository;
 
   ReadingBookModalBloc({
     @factoryParam required this.initial,
+    required this.calendarBloc,
     required this.booksRepository,
   }) {
     currentBook = SelectFieldBloc(
@@ -110,11 +114,15 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
   FutureOr<void> onSubmit() async {
     emitLoading();
 
-    final recordsSum = records.value.fold((0, 0), (prev, record) {
-      return (prev.$1 + record.pageCount, prev.$2 + record.duration);
+    final recordsSum =
+        records.value.fold((pageCount: 0, duration: 0), (prev, record) {
+      return (
+        pageCount: prev.pageCount + record.pageCount,
+        duration: prev.duration + record.duration
+      );
     });
 
-    final pagesPerSecond = recordsSum.$1 / recordsSum.$2;
+    final pagesPerSecond = recordsSum.pageCount / recordsSum.duration;
 
     try {
       final book = currentBook.value!;
@@ -132,11 +140,17 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
       );
 
       await booksRepository.updateBook(payload);
-      remainingTime.changeValue(book.pageCount ~/ pagesPerSecond);
+      calendarBloc.addRecordAsync(
+        latestRecords.toCalendarModel(
+          bookUid: book.uid,
+          imageUrl: payload.imageUrl,
+        ),
+      );
 
+      remainingTime.changeValue(book.pageCount ~/ pagesPerSecond);
       currentBook.changeValue(payload);
 
-      emitInitial();
+      emitSuccess(payload);
     } catch (e, stackTrace) {
       addError(e, stackTrace);
 

@@ -443,6 +443,8 @@ CalendarBookModel _$CalendarBookModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CalendarBookModel {
+  @JsonKey(includeToJson: false)
+  String get uid => throw _privateConstructorUsedError;
   String get bookUid => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   @TimestampSerializer()
@@ -461,7 +463,10 @@ abstract class $CalendarBookModelCopyWith<$Res> {
       _$CalendarBookModelCopyWithImpl<$Res, CalendarBookModel>;
   @useResult
   $Res call(
-      {String bookUid, String imageUrl, @TimestampSerializer() DateTime date});
+      {@JsonKey(includeToJson: false) String uid,
+      String bookUid,
+      String imageUrl,
+      @TimestampSerializer() DateTime date});
 }
 
 /// @nodoc
@@ -477,11 +482,16 @@ class _$CalendarBookModelCopyWithImpl<$Res, $Val extends CalendarBookModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? bookUid = null,
     Object? imageUrl = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       bookUid: null == bookUid
           ? _value.bookUid
           : bookUid // ignore: cast_nullable_to_non_nullable
@@ -507,7 +517,10 @@ abstract class _$$CalendarBookModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String bookUid, String imageUrl, @TimestampSerializer() DateTime date});
+      {@JsonKey(includeToJson: false) String uid,
+      String bookUid,
+      String imageUrl,
+      @TimestampSerializer() DateTime date});
 }
 
 /// @nodoc
@@ -521,11 +534,16 @@ class __$$CalendarBookModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? bookUid = null,
     Object? imageUrl = null,
     Object? date = null,
   }) {
     return _then(_$CalendarBookModelImpl(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       bookUid: null == bookUid
           ? _value.bookUid
           : bookUid // ignore: cast_nullable_to_non_nullable
@@ -544,15 +562,20 @@ class __$$CalendarBookModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CalendarBookModelImpl implements _CalendarBookModel {
+class _$CalendarBookModelImpl extends _CalendarBookModel {
   const _$CalendarBookModelImpl(
-      {this.bookUid = '',
+      {@JsonKey(includeToJson: false) this.uid = '',
+      this.bookUid = '',
       this.imageUrl = '',
-      @TimestampSerializer() required this.date});
+      @TimestampSerializer() required this.date})
+      : super._();
 
   factory _$CalendarBookModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CalendarBookModelImplFromJson(json);
 
+  @override
+  @JsonKey(includeToJson: false)
+  final String uid;
   @override
   @JsonKey()
   final String bookUid;
@@ -565,7 +588,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
 
   @override
   String toString() {
-    return 'CalendarBookModel(bookUid: $bookUid, imageUrl: $imageUrl, date: $date)';
+    return 'CalendarBookModel(uid: $uid, bookUid: $bookUid, imageUrl: $imageUrl, date: $date)';
   }
 
   @override
@@ -573,6 +596,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CalendarBookModelImpl &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.bookUid, bookUid) || other.bookUid == bookUid) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
@@ -581,7 +605,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, bookUid, imageUrl, date);
+  int get hashCode => Object.hash(runtimeType, uid, bookUid, imageUrl, date);
 
   @JsonKey(ignore: true)
   @override
@@ -598,16 +622,21 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
   }
 }
 
-abstract class _CalendarBookModel implements CalendarBookModel {
+abstract class _CalendarBookModel extends CalendarBookModel {
   const factory _CalendarBookModel(
-          {final String bookUid,
+          {@JsonKey(includeToJson: false) final String uid,
+          final String bookUid,
           final String imageUrl,
           @TimestampSerializer() required final DateTime date}) =
       _$CalendarBookModelImpl;
+  const _CalendarBookModel._() : super._();
 
   factory _CalendarBookModel.fromJson(Map<String, dynamic> json) =
       _$CalendarBookModelImpl.fromJson;
 
+  @override
+  @JsonKey(includeToJson: false)
+  String get uid;
   @override
   String get bookUid;
   @override
@@ -1266,13 +1295,14 @@ class __$$BookReadingRecordImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BookReadingRecordImpl implements _BookReadingRecord {
+class _$BookReadingRecordImpl extends _BookReadingRecord {
   const _$BookReadingRecordImpl(
       {required this.id,
       required this.created,
       required this.duration,
       required this.pageCount,
-      required this.percentage});
+      required this.percentage})
+      : super._();
 
   factory _$BookReadingRecordImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookReadingRecordImplFromJson(json);
@@ -1328,13 +1358,14 @@ class _$BookReadingRecordImpl implements _BookReadingRecord {
   }
 }
 
-abstract class _BookReadingRecord implements BookReadingRecord {
+abstract class _BookReadingRecord extends BookReadingRecord {
   const factory _BookReadingRecord(
       {required final int id,
       required final DateTime created,
       required final int duration,
       required final int pageCount,
       required final int percentage}) = _$BookReadingRecordImpl;
+  const _BookReadingRecord._() : super._();
 
   factory _BookReadingRecord.fromJson(Map<String, dynamic> json) =
       _$BookReadingRecordImpl.fromJson;

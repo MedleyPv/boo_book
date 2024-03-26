@@ -17,9 +17,7 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    context.read<HomeBloc>()
-      ..load()
-      ..loadExtra();
+    context.read<HomeBloc>().load();
 
     return this;
   }
@@ -45,9 +43,7 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
                   minFontSize: 20,
                 ),
                 const SizedBox(height: 26),
-                BookCalendar(
-                  calendarBooks: state.extraData,
-                ),
+                const BookCalendar(),
                 const SizedBox(height: 26),
                 BodyContainer(
                   title: 'Продовжити читати',

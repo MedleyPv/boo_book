@@ -37,7 +37,7 @@ class SearchRepository {
         'volumes?q=intitle:$formattedQuery'
         '&maxResults=${pagination.limit}'
         '&startIndex=${pagination.startOffset}'
-        '&langRestrict="ru"'
+        '&langRestrict=uk'
         '&printType=books';
 
     final response = await http.get(Uri.parse(queryUrl));

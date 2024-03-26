@@ -5,56 +5,42 @@ import 'package:boo_book/models/books/models.dart';
 import 'package:boo_book/repositories/mixin/firestore_mixin_repo.dart';
 
 @injectable
-class BooksRepository extends FirestoreMixinRepo {
+class BooksRepository extends FirestoreMixinRepo<UserBookModel> {
   BooksRepository({
     @Named('userUid') required super.userUid,
   });
 
+  @override
+  CollectionReference<UserBookModel> collectionReference() {
+    return userDoc().collection('books').withConverter(
+          fromFirestore: (snapshot, _) => UserBookModel.fromSnapshot(snapshot),
+          toFirestore: (payload, _) => payload.toJson(),
+        );
+  }
+
   Future<List<UserBookModel>> getUncompletedBooks() async {
-    final response = await userDoc()
-        .collection('books')
+    final response = await collectionReference()
         .where('completed', isNotEqualTo: true)
         .get();
 
-    return response.docs.map((doc) => UserBookModel.fromSnapshot(doc)).toList();
+    return response.docs.map((doc) => doc.data()).toList();
   }
 
   Future<List<UserBookModel>> getUserBooks() async {
-    final response = await userDoc().collection('books').get();
+    final response = await collectionReference().get();
 
-    return response.docs.map((doc) => UserBookModel.fromSnapshot(doc)).toList();
-  }
-
-  Future<List<CalendarBookModel>> getCalendarData({
-    required DateTime from,
-    required DateTime to,
-  }) async {
-    final fromTimestamp = Timestamp.fromDate(from);
-    final toTimestamp = Timestamp.fromDate(to);
-
-    final response = await userDoc()
-        .collection('calendar')
-        .where(
-          'date',
-          isGreaterThan: fromTimestamp,
-          isLessThan: toTimestamp,
-        )
-        .get();
-
-    return response.docs
-        .map((doc) => CalendarBookModel.fromJson(doc.data()))
-        .toList();
+    return response.docs.map((doc) => doc.data()).toList();
   }
 
   Future<UserBookModel> addBookToCollection(
     UserBookModel payload,
   ) async {
-    final response = await userDoc().collection('books').add(payload.toJson());
+    final response = await collectionReference().add(payload);
 
     return payload.copyWith(uid: response.id);
   }
 
   Future<void> updateBook(UserBookModel payload) {
-    return userDoc().collection('books').doc(payload.uid).set(payload.toJson());
+    return collectionReference().doc(payload.uid).set(payload);
   }
 }
