@@ -15,8 +15,14 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
       progress: json['progress'] as int? ?? 0,
       pageCount: json['pageCount'] as int? ?? 0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      pagesPerSecond: (json['pagesPerSecond'] as num?)?.toDouble() ?? 0.0,
       completed: json['completed'] as bool? ?? false,
       review: json['review'] as String? ?? '',
+      readingRecords: (json['readingRecords'] as List<dynamic>?)
+              ?.map(
+                  (e) => BookReadingRecord.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       lastRed: json['lastRed'] == null
           ? null
           : DateTime.parse(json['lastRed'] as String),
@@ -33,8 +39,10 @@ Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
       'progress': instance.progress,
       'pageCount': instance.pageCount,
       'rating': instance.rating,
+      'pagesPerSecond': instance.pagesPerSecond,
       'completed': instance.completed,
       'review': instance.review,
+      'readingRecords': instance.readingRecords.map((e) => e.toJson()).toList(),
       'lastRed': instance.lastRed?.toIso8601String(),
       'started': instance.started?.toIso8601String(),
     };
@@ -89,7 +97,7 @@ Map<String, dynamic> _$$BookSearchModelImplToJson(
       'description': instance.description,
       'pageCount': instance.pageCount,
       'categories': instance.categories,
-      'imageLinks': instance.imageLinks,
+      'imageLinks': instance.imageLinks.toJson(),
     };
 
 _$SearchImageLinksModelImpl _$$SearchImageLinksModelImplFromJson(
@@ -104,4 +112,24 @@ Map<String, dynamic> _$$SearchImageLinksModelImplToJson(
     <String, dynamic>{
       'smallThumbnail': instance.smallThumbnail,
       'thumbnail': instance.thumbnail,
+    };
+
+_$BookReadingRecordImpl _$$BookReadingRecordImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookReadingRecordImpl(
+      id: json['id'] as int,
+      created: DateTime.parse(json['created'] as String),
+      duration: json['duration'] as int,
+      pageCount: json['pageCount'] as int,
+      percentage: json['percentage'] as int,
+    );
+
+Map<String, dynamic> _$$BookReadingRecordImplToJson(
+        _$BookReadingRecordImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'created': instance.created.toIso8601String(),
+      'duration': instance.duration,
+      'pageCount': instance.pageCount,
+      'percentage': instance.percentage,
     };

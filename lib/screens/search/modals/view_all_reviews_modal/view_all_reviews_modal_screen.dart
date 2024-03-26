@@ -9,8 +9,8 @@ import 'package:boo_book/screens/search/modals/search_book_details_modal/widgets
 import 'package:boo_book/widgets/index.dart';
 
 @RoutePage()
-class ViewAllReviewsModal extends StatelessWidget {
-  const ViewAllReviewsModal({
+class ViewAllReviewsModalScreen extends StatelessWidget {
+  const ViewAllReviewsModalScreen({
     super.key,
     required this.reviews,
   });
@@ -22,7 +22,6 @@ class ViewAllReviewsModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return LandingPageScaffold(
       appBar: AppBar(
-        toolbarHeight: kToolbarHeight / 1.5,
         title: Text(
           'Відгуки',
           style: Theme.of(context).textTheme.titleMedium,

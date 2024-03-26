@@ -28,7 +28,6 @@ class SearchScreen extends StatelessWidget implements AutoRouteWrapper {
 
     return LandingPageScaffold(
       appBar: AppBar(
-        toolbarHeight: kToolbarHeight / 1.5,
         leading: const CloseButton(),
         title: Text(
           'Пошук',

@@ -60,10 +60,7 @@ class SearchBookDetailsModalScreen extends StatelessWidget
     final formBloc = context.read<SearchBookDetailsModalBloc>();
 
     return LandingPageScaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        toolbarHeight: kToolbarHeight / 1.5,
-      ),
+      appBar: AppBar(),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -132,7 +129,7 @@ class SearchBookDetailsModalScreen extends StatelessWidget
                                 GestureDetector(
                                   behavior: HitTestBehavior.opaque,
                                   onTap: () => context.pushRoute(
-                                    ViewAllReviewsModal(
+                                    ViewAllReviewsModalRoute(
                                       reviews: formBloc.reviews,
                                     ),
                                   ),

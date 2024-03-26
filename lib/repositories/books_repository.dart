@@ -53,4 +53,8 @@ class BooksRepository extends FirestoreMixinRepo {
 
     return payload.copyWith(uid: response.id);
   }
+
+  Future<void> updateBook(UserBookModel payload) {
+    return userDoc().collection('books').doc(payload.uid).set(payload.toJson());
+  }
 }

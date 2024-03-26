@@ -6,9 +6,14 @@ class BookProgress extends StatelessWidget {
   const BookProgress({
     super.key,
     required this.progress,
+    this.bgColor,
+    this.percentageStyle,
   });
 
   final int progress;
+
+  final Color? bgColor;
+  final TextStyle? percentageStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class BookProgress extends StatelessWidget {
           width: 34,
           child: Text(
             '$progress%',
-            style: textTheme.bodySmall,
+            style: percentageStyle ?? textTheme.bodySmall,
             textAlign: TextAlign.center,
           ),
         ),
@@ -30,7 +35,7 @@ class BookProgress extends StatelessWidget {
             painter: _ProgressPainter(
               value: progress.toDouble(),
               maxValue: 100,
-              backgroundColor: Colors.white,
+              backgroundColor: bgColor ?? Colors.white,
               progressColor: Colors.black,
             ),
             child: const SizedBox(

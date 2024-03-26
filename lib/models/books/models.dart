@@ -23,8 +23,10 @@ class UserBookModel with _$UserBookModel {
     @Default(0) int progress,
     @Default(0) int pageCount,
     @Default(0.0) double rating,
+    @Default(0.0) double pagesPerSecond,
     @Default(false) bool completed,
     @Default('') String review,
+    @Default([]) List<BookReadingRecord> readingRecords,
     DateTime? lastRed,
     DateTime? started,
   }) = _UserBookModel;
@@ -81,4 +83,18 @@ class SearchImageLinksModel with _$SearchImageLinksModel {
 
   factory SearchImageLinksModel.fromJson(Map<String, dynamic> json) =>
       _$SearchImageLinksModelFromJson(json);
+}
+
+@freezed
+class BookReadingRecord with _$BookReadingRecord {
+  const factory BookReadingRecord({
+    required int id,
+    required DateTime created,
+    required int duration,
+    required int pageCount,
+    required int percentage,
+  }) = _BookReadingRecord;
+
+  factory BookReadingRecord.fromJson(Map<String, dynamic> json) =>
+      _$BookReadingRecordFromJson(json);
 }

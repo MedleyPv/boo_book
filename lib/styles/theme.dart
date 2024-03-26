@@ -8,8 +8,9 @@ class AppTheme {
       useMaterial3: false,
       scaffoldBackgroundColor: AppColors.scaffoldBg,
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
         elevation: 0,
+        toolbarHeight: kToolbarHeight / 1.5,
+        backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
