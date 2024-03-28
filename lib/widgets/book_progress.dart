@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:boo_book/core/index.dart';
-import 'package:flutter/widgets.dart';
 
 class BookProgress extends StatelessWidget {
   const BookProgress({

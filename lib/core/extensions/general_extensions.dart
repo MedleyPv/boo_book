@@ -46,7 +46,7 @@ extension type IntFormatter(int time) {
       text += '$minutes хвилин${minutes.numberTextEnding} ';
     }
 
-    if (seconds.time != 0) {
+    if (text.isEmpty) {
       text += '$seconds секунд${seconds.numberTextEnding}';
     }
 

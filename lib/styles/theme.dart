@@ -34,6 +34,7 @@ class AppTheme {
         labelSmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
+          letterSpacing: 0.2,
         ),
         labelMedium: TextStyle(
           fontSize: 15,

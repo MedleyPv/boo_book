@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:boo_book/blocs/calendar/calendar_bloc.dart';
-import 'package:boo_book/blocs/index.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
 
+import 'package:boo_book/blocs/calendar/calendar_bloc.dart';
+import 'package:boo_book/blocs/index.dart';
 import 'package:boo_book/core/index.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/repositories/index.dart';
@@ -42,7 +41,7 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
     );
 
     startPage = NumberFieldBloc(
-      initialValue: initial.readingRecords.lastOrNull?.pageCount,
+      initialValue: initial.readingRecords.firstOrNull?.pageCount,
     );
 
     timerSeconds = NumberFieldBloc(
@@ -125,6 +124,7 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
     final pagesPerSecond = recordsSum.pageCount / recordsSum.duration;
 
     try {
+      final now = DateTime.now();
       final book = currentBook.value!;
       final latestRecords = records.value.first;
       final completed = latestRecords.pageCount == book.pageCount;
@@ -134,9 +134,11 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
       final payload = book.copyWith(
         readingRecords: records.value,
         completed: completed,
-        lastRed: DateTime.now(),
+        started: book.started ?? now,
+        lastRed: now,
         progress: (remaining * 100).toInt(),
         pagesPerSecond: pagesPerSecond,
+        readingDuration: recordsSum.duration,
       );
 
       await booksRepository.updateBook(payload);
@@ -153,8 +155,6 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
       emitSuccess(payload);
     } catch (e, stackTrace) {
       addError(e, stackTrace);
-
-      log(stackTrace.toString());
 
       emitFailure('Something went wrong!');
     }

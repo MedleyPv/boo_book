@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:boo_book/core/extensions/context_extensions.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/router/index.dart';
+import 'package:boo_book/router/router.gr.dart';
 import 'package:boo_book/widgets/index.dart';
 
 class ProgressBookCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class ProgressBookCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => context.pushRoute(
-        ReadingBookModalRoute(book: book),
+        UserBookDetailsRoute(book: book),
       ),
       child: SizedBox(
         height: 130,

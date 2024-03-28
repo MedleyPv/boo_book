@@ -27,6 +27,7 @@ mixin _$UserBookModel {
   String get imageUrl => throw _privateConstructorUsedError;
   int get progress => throw _privateConstructorUsedError;
   int get pageCount => throw _privateConstructorUsedError;
+  int get readingDuration => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
   double get pagesPerSecond => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $UserBookModelCopyWith<$Res> {
       String imageUrl,
       int progress,
       int pageCount,
+      int readingDuration,
       double rating,
       double pagesPerSecond,
       bool completed,
@@ -83,6 +85,7 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
     Object? imageUrl = null,
     Object? progress = null,
     Object? pageCount = null,
+    Object? readingDuration = null,
     Object? rating = null,
     Object? pagesPerSecond = null,
     Object? completed = null,
@@ -115,6 +118,10 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
       pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      readingDuration: null == readingDuration
+          ? _value.readingDuration
+          : readingDuration // ignore: cast_nullable_to_non_nullable
               as int,
       rating: null == rating
           ? _value.rating
@@ -163,6 +170,7 @@ abstract class _$$UserBookModelImplCopyWith<$Res>
       String imageUrl,
       int progress,
       int pageCount,
+      int readingDuration,
       double rating,
       double pagesPerSecond,
       bool completed,
@@ -189,6 +197,7 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? progress = null,
     Object? pageCount = null,
+    Object? readingDuration = null,
     Object? rating = null,
     Object? pagesPerSecond = null,
     Object? completed = null,
@@ -221,6 +230,10 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
       pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      readingDuration: null == readingDuration
+          ? _value.readingDuration
+          : readingDuration // ignore: cast_nullable_to_non_nullable
               as int,
       rating: null == rating
           ? _value.rating
@@ -264,6 +277,7 @@ class _$UserBookModelImpl extends _UserBookModel {
       this.imageUrl = '',
       this.progress = 0,
       this.pageCount = 0,
+      this.readingDuration = 0,
       this.rating = 0.0,
       this.pagesPerSecond = 0.0,
       this.completed = false,
@@ -297,6 +311,9 @@ class _$UserBookModelImpl extends _UserBookModel {
   final int pageCount;
   @override
   @JsonKey()
+  final int readingDuration;
+  @override
+  @JsonKey()
   final double rating;
   @override
   @JsonKey()
@@ -323,7 +340,7 @@ class _$UserBookModelImpl extends _UserBookModel {
 
   @override
   String toString() {
-    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, pageCount: $pageCount, rating: $rating, pagesPerSecond: $pagesPerSecond, completed: $completed, review: $review, readingRecords: $readingRecords, lastRed: $lastRed, started: $started)';
+    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, pageCount: $pageCount, readingDuration: $readingDuration, rating: $rating, pagesPerSecond: $pagesPerSecond, completed: $completed, review: $review, readingRecords: $readingRecords, lastRed: $lastRed, started: $started)';
   }
 
   @override
@@ -340,6 +357,8 @@ class _$UserBookModelImpl extends _UserBookModel {
                 other.progress == progress) &&
             (identical(other.pageCount, pageCount) ||
                 other.pageCount == pageCount) &&
+            (identical(other.readingDuration, readingDuration) ||
+                other.readingDuration == readingDuration) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.pagesPerSecond, pagesPerSecond) ||
                 other.pagesPerSecond == pagesPerSecond) &&
@@ -362,6 +381,7 @@ class _$UserBookModelImpl extends _UserBookModel {
       imageUrl,
       progress,
       pageCount,
+      readingDuration,
       rating,
       pagesPerSecond,
       completed,
@@ -392,6 +412,7 @@ abstract class _UserBookModel extends UserBookModel {
       final String imageUrl,
       final int progress,
       final int pageCount,
+      final int readingDuration,
       final double rating,
       final double pagesPerSecond,
       final bool completed,
@@ -417,6 +438,8 @@ abstract class _UserBookModel extends UserBookModel {
   int get progress;
   @override
   int get pageCount;
+  @override
+  int get readingDuration;
   @override
   double get rating;
   @override

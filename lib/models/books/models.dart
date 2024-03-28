@@ -22,6 +22,7 @@ class UserBookModel with _$UserBookModel {
     @Default('') String imageUrl,
     @Default(0) int progress,
     @Default(0) int pageCount,
+    @Default(0) int readingDuration,
     @Default(0.0) double rating,
     @Default(0.0) double pagesPerSecond,
     @Default(false) bool completed,

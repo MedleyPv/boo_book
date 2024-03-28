@@ -76,7 +76,7 @@ class _ReviewItem extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 6),
                 child: RatingBarIndicator(
                   itemSize: 22,
-                  rating: book.rating,
+                  rating: book.rating.toDouble(),
                   unratedColor: Colors.grey,
                   itemBuilder: (_, index) {
                     return Assets.icons.start.svg();

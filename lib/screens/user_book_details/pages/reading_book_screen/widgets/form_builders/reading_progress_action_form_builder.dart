@@ -5,7 +5,7 @@ import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
 
 import 'package:boo_book/core/extensions/index.dart';
 import 'package:boo_book/models/index.dart';
-import 'package:boo_book/screens/reading_book/widgets/numpad_modal_sheet.dart';
+import 'package:boo_book/screens/user_book_details/pages/reading_book_screen/widgets/numpad_modal_sheet.dart';
 import 'package:boo_book/styles/index.dart';
 import 'package:boo_book/widgets/index.dart';
 

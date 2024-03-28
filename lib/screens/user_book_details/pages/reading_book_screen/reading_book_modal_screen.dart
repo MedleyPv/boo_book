@@ -1,8 +1,8 @@
-import 'package:boo_book/blocs/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:boo_book/blocs/index.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/router/index.dart';
 import 'package:boo_book/screens/search/modals/search_book_details_modal/widgets/index.dart';
@@ -16,13 +16,14 @@ class ReadingBookModalScreen extends StatelessWidget
     implements AutoRouteWrapper {
   const ReadingBookModalScreen({
     super.key,
-    required this.book,
   });
-
-  final UserBookModel book;
 
   @override
   Widget wrappedRoute(BuildContext context) {
+    final args = context.routeData.parent!.args! as UserBookDetailsRouteArgs;
+
+    final book = args.book;
+
     final formBloc = getIt<ReadingBookModalBloc>(
       param1: book,
     );
@@ -45,10 +46,22 @@ class ReadingBookModalScreen extends StatelessWidget
         if (book != null) {
           context.read<HomeBloc>().editItem(book);
           context.read<LibraryBloc>().editItem(book);
+
+          if (book.completed) {
+            context.pushRoute(
+              CompletedBookModalRoute(
+                book: book,
+              ),
+            );
+          }
         }
       },
       child: LandingPageScaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () => context.popRoute(),
+          ),
+        ),
         safeAreaBottom: false,
         body: CustomScrollView(
           slivers: [
@@ -56,7 +69,7 @@ class ReadingBookModalScreen extends StatelessWidget
               child: Column(
                 children: [
                   BookAvatarFrame(
-                    imageUrl: book.imageUrl,
+                    imageUrl: formBloc.initial.imageUrl,
                     useChangedImage: true,
                   ),
                   const SizedBox(height: 20),

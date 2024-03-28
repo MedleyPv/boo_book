@@ -1,7 +1,7 @@
-import 'package:boo_book/models/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:boo_book/models/index.dart';
 import 'mixin/firestore_mixin_repo.dart';
 
 @injectable

@@ -15,7 +15,7 @@ class TimeRemainingFormBuilder extends StatelessWidget {
   final NumberFieldBloc formBloc;
 
   String _parseSeconds(int secondsAmount) {
-    return IntFormatter(secondsAmount).fullTimeFormat;
+    return 'Залишилось ${IntFormatter(secondsAmount).fullTimeFormat}';
   }
 
   @override

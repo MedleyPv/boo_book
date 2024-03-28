@@ -54,20 +54,22 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
                       const LibraryRoute(),
                     ),
                   ),
-                  child: Column(
-                    children: state.data.select(
-                      (book, index) {
-                        final isLast = index == state.data.length - 1;
+                  child: state.status.isSuccess && state.data.isEmpty
+                      ? const EmptyPlaceholder()
+                      : Column(
+                          children: state.data.select(
+                            (book, index) {
+                              final isLast = index == state.data.length - 1;
 
-                        return Padding(
-                          padding: isLast
-                              ? EdgeInsets.zero
-                              : const EdgeInsets.only(bottom: 15),
-                          child: ProgressBookCard(book: book),
-                        );
-                      },
-                    ).toList(),
-                  ),
+                              return Padding(
+                                padding: isLast
+                                    ? EdgeInsets.zero
+                                    : const EdgeInsets.only(bottom: 15),
+                                child: ProgressBookCard(book: book),
+                              );
+                            },
+                          ).toList(),
+                        ),
                 ),
               ],
             ),

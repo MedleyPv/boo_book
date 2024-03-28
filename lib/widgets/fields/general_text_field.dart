@@ -6,17 +6,25 @@ import 'package:boo_book/styles/index.dart';
 class GeneralTextField extends StatelessWidget {
   const GeneralTextField({
     super.key,
+    this.focusNode,
     required this.controller,
     this.hintText,
+    this.maxLines = 1,
     this.textInputType,
     this.inputFormatters,
+    this.onChange,
   });
 
-  final String? hintText;
+  final FocusNode? focusNode;
   final TextEditingController controller;
+
+  final int? maxLines;
+  final String? hintText;
 
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
+
+  final void Function(String)? onChange;
 
   InputBorder get _border {
     return OutlineInputBorder(
@@ -31,10 +39,14 @@ class GeneralTextField extends StatelessWidget {
 
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       style: textTheme.displayMedium,
       cursorColor: Colors.black,
+      maxLines: maxLines,
       keyboardType: textInputType,
+      textInputAction: TextInputAction.done,
       inputFormatters: inputFormatters,
+      onChanged: onChange,
       decoration: InputDecoration(
         filled: true,
         isDense: true,

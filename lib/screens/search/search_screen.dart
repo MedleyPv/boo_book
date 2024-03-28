@@ -56,6 +56,30 @@ class SearchScreen extends StatelessWidget implements AutoRouteWrapper {
                 return const CircularProgressIndicator.adaptive();
               }
 
+              if (state.status.isSuccess && state.visibleData.isEmpty) {
+                return Expanded(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 60),
+                      Assets.icons.search.svg(
+                        height: 42,
+                        colorFilter: const ColorFilter.mode(
+                          AppColors.hint,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'Нічого не знайдено',
+                        style: textTheme.labelMedium?.copyWith(
+                          color: AppColors.hint,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
               // TODO(Pasha): add empty and error widgets
               return Expanded(
                 child: DecoratedBox(

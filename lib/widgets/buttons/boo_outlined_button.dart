@@ -6,10 +6,19 @@ class BooOutlinedButton extends StatelessWidget {
   const BooOutlinedButton({
     super.key,
     required this.title,
+    this.style,
+    this.padding = const EdgeInsets.symmetric(
+      vertical: 11,
+      horizontal: 4,
+    ),
     required this.onTap,
   });
 
   final String title;
+
+  final TextStyle? style;
+  final EdgeInsets padding;
+
   final VoidCallback onTap;
 
   @override
@@ -22,13 +31,10 @@ class BooOutlinedButton extends StatelessWidget {
         onTap: onTap,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 11,
-              horizontal: 4,
-            ),
+            padding: padding,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.labelMedium,
+              style: style ?? Theme.of(context).textTheme.labelMedium,
             ),
           ),
         ),

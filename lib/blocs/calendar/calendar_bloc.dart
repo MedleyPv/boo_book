@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:boo_book/models/index.dart';
-import 'package:boo_book/repositories/index.dart';
 import 'package:darq/darq.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:boo_book/models/index.dart';
+import 'package:boo_book/repositories/index.dart';
 
 part 'calendar_events.dart';
 

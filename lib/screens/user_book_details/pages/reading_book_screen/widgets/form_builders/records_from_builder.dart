@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
 
 import 'package:boo_book/models/index.dart';
-import 'package:boo_book/screens/reading_book/reading_book_modal_bloc.dart';
+import 'package:boo_book/screens/user_book_details/pages/reading_book_screen/reading_book_modal_bloc.dart';
 import '../index.dart';
 
 // TODO(Pasha): Add animated list
