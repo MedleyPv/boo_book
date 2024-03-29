@@ -40,14 +40,6 @@ class SearchBookDetailsModalScreen extends StatelessWidget
 
           context.read<HomeBloc>().addItem(newBook, AddPosition.start);
           context.read<LibraryBloc>().addItem(newBook);
-
-          if (formBloc.redirectToReadingPage) {
-            //
-          } else {
-            context.navigateTo(
-              const LibraryRoute(),
-            );
-          }
         },
         child: this,
       ),
@@ -60,10 +52,7 @@ class SearchBookDetailsModalScreen extends StatelessWidget
     final formBloc = context.read<SearchBookDetailsModalBloc>();
 
     return LandingPageScaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        toolbarHeight: kToolbarHeight / 1.5,
-      ),
+      appBar: AppBar(),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -128,27 +117,30 @@ class SearchBookDetailsModalScreen extends StatelessWidget
                                   number: state.value.length,
                                 ),
                                 const Spacer(),
-                                // if (state.value.length > 1)
-                                GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
-                                  onTap: () => context.pushRoute(
-                                    ViewAllReviewsModal(
-                                      reviews: formBloc.reviews,
+                                if (state.value.length > 1)
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.opaque,
+                                    onTap: () => context.pushRoute(
+                                      ViewAllReviewsModalRoute(
+                                        reviews: formBloc.reviews,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Переглянути всі',
+                                      style: textTheme.labelSmall?.copyWith(
+                                        decoration: TextDecoration.underline,
+                                      ),
                                     ),
                                   ),
-                                  child: Text(
-                                    'Переглянути всі',
-                                    style: textTheme.labelSmall?.copyWith(
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
                             const SizedBox(height: 10),
                             ...state.value.take(3).map(
-                                  (review) => BookReviewCard(
-                                    review: review,
+                                  (review) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: BookReviewCard(
+                                      review: review,
+                                    ),
                                   ),
                                 ),
                           ],
@@ -178,8 +170,6 @@ class _ActionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formBloc = context.read<SearchBookDetailsModalBloc>();
-
     return Container(
       padding: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
@@ -197,22 +187,45 @@ class _ActionButtons extends StatelessWidget {
           Expanded(
             child: BooOutlinedButton(
               title: 'Читати',
-              onTap: () {
-                formBloc
-                  ..redirectToReadingPage = true
-                  ..submit();
-              },
+              onTap: () => _submitAndNavigate(
+                context,
+                (book) => context.replaceRoute(
+                  ReadingBookModalRoute(book: book),
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 10),
           Expanded(
             child: BooOutlinedButton(
               title: 'Додати до полиці',
-              onTap: formBloc.submit,
+              onTap: () => _submitAndNavigate(
+                context,
+                (book) => context.navigateTo(
+                  const LibraryRoute(),
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _submitAndNavigate(
+    BuildContext context,
+    void Function(UserBookModel) navigate,
+  ) async {
+    final formBloc = context.read<SearchBookDetailsModalBloc>();
+
+    await formBloc.submit();
+
+    final state = formBloc.state;
+
+    final book = state.response;
+
+    if (state.status.isSuccess && book != null && context.mounted) {
+      return navigate(book);
+    }
   }
 }

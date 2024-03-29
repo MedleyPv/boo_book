@@ -87,7 +87,7 @@ class _ReviewItem extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            book.review,
+            book.review?.description ?? '',
             style: textTheme.titleSmall?.copyWith(fontSize: 14),
           ),
         ],

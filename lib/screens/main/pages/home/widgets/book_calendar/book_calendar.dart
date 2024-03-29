@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:boo_book/models/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:boo_book/blocs/index.dart';
 import 'package:boo_book/screens/main/pages/home/widgets/book_calendar/calendar_days_grid.dart';
 import 'package:boo_book/styles/index.dart';
 import 'package:boo_book/widgets/index.dart';
@@ -8,10 +10,7 @@ import 'package:boo_book/widgets/index.dart';
 class BookCalendar extends StatefulWidget {
   const BookCalendar({
     super.key,
-    required this.calendarBooks,
   });
-
-  final CalendarBookCollection calendarBooks;
 
   @override
   State<BookCalendar> createState() => _BookCalendarState();
@@ -41,19 +40,23 @@ class _BookCalendarState extends State<BookCalendar> {
           ),
         ),
       ),
-      child: AnimatedCrossFade(
-        firstCurve: Curves.slowMiddle,
-        duration: const Duration(milliseconds: 350),
-        crossFadeState:
-            expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-        firstChild: CalendarDaysGrid(
-          showMonth: false,
-          calendarBooks: widget.calendarBooks,
-        ),
-        secondChild: CalendarDaysGrid(
-          showMonth: true,
-          calendarBooks: widget.calendarBooks,
-        ),
+      child: BlocBuilder<CalendarBloc, CalendarState>(
+        builder: (context, state) {
+          return AnimatedCrossFade(
+            firstCurve: Curves.slowMiddle,
+            duration: const Duration(milliseconds: 350),
+            crossFadeState:
+                expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            firstChild: CalendarDaysGrid(
+              showMonth: false,
+              calendarBooks: state.data,
+            ),
+            secondChild: CalendarDaysGrid(
+              showMonth: true,
+              calendarBooks: state.data,
+            ),
+          );
+        },
       ),
     );
   }

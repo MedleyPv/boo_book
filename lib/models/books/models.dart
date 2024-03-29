@@ -17,23 +17,27 @@ class UserBookModel with _$UserBookModel {
 
   const factory UserBookModel({
     @JsonKey(includeToJson: false) @Default('') String uid,
+    @Default('') String searchUid,
     @Default('') String title,
     @Default('') String author,
     @Default('') String imageUrl,
     @Default(0) int progress,
     @Default(0) int pageCount,
+    @Default(0) int readingDuration,
     @Default(0.0) double rating,
+    @Default(0.0) double pagesPerSecond,
     @Default(false) bool completed,
-    @Default('') String review,
+    Review? review,
+    @Default([]) List<BookReadingRecord> readingRecords,
     DateTime? lastRed,
     DateTime? started,
   }) = _UserBookModel;
 
   factory UserBookModel.fromSnapshot(
-    QueryDocumentSnapshot<DynamicMap> snapshot,
+    DocumentSnapshot<DynamicMap> snapshot,
   ) {
     final uid = snapshot.id;
-    final json = snapshot.data();
+    final json = snapshot.data() ?? <String, dynamic>{};
 
     return UserBookModel.fromJson(json).copyWith(uid: uid);
   }
@@ -44,11 +48,23 @@ class UserBookModel with _$UserBookModel {
 
 @freezed
 class CalendarBookModel with _$CalendarBookModel {
+  const CalendarBookModel._();
+
   const factory CalendarBookModel({
+    @JsonKey(includeToJson: false) @Default('') String uid,
     @Default('') String bookUid,
     @Default('') String imageUrl,
     @TimestampSerializer() required DateTime date,
   }) = _CalendarBookModel;
+
+  factory CalendarBookModel.fromSnapshot(
+    DocumentSnapshot<DynamicMap> snapshot,
+  ) {
+    final uid = snapshot.id;
+    final json = snapshot.data() ?? <String, dynamic>{};
+
+    return CalendarBookModel.fromJson(json).copyWith(uid: uid);
+  }
 
   factory CalendarBookModel.fromJson(Map<String, dynamic> json) =>
       _$CalendarBookModelFromJson(json);
@@ -81,4 +97,43 @@ class SearchImageLinksModel with _$SearchImageLinksModel {
 
   factory SearchImageLinksModel.fromJson(Map<String, dynamic> json) =>
       _$SearchImageLinksModelFromJson(json);
+}
+
+@freezed
+class BookReadingRecord with _$BookReadingRecord {
+  const BookReadingRecord._();
+
+  const factory BookReadingRecord({
+    required int id,
+    required DateTime created,
+    required int duration,
+    required int pageCount,
+    required int percentage,
+  }) = _BookReadingRecord;
+
+  CalendarBookModel toCalendarModel({
+    required String bookUid,
+    required String imageUrl,
+  }) {
+    return CalendarBookModel(
+      bookUid: bookUid,
+      date: created,
+      imageUrl: imageUrl,
+    );
+  }
+
+  factory BookReadingRecord.fromJson(Map<String, dynamic> json) =>
+      _$BookReadingRecordFromJson(json);
+}
+
+@freezed
+class Review with _$Review {
+  const Review._();
+
+  const factory Review({
+    @Default('') String uid,
+    @Default('') String description,
+  }) = _Review;
+
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stx_flutter_form_bloc/stx_flutter_form_bloc.dart';
@@ -14,23 +15,23 @@ class TextInputFormBuilder extends StatefulWidget {
     required this.fieldBloc,
     this.label = '',
     this.hintText,
+    this.maxLines = 1,
     this.isObscureText = false,
     this.fieldFocusNode,
-    this.nextFieldFocusNode,
     this.textInputType,
     this.inputFormatters,
     this.onSubmit,
   });
 
+  final TextFieldBloc fieldBloc;
+
   final String label;
   final String? hintText;
 
+  final int? maxLines;
   final bool isObscureText;
 
   final FocusNode? fieldFocusNode;
-  final FocusNode? nextFieldFocusNode;
-
-  final TextFieldBloc fieldBloc;
 
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
@@ -68,15 +69,32 @@ class _TextInputFormBuilderState extends State<TextInputFormBuilder> {
               extentOffset: offset,
             );
         }
-        return Focus(
-          onFocusChange: (value) {
-            if (!value) {
-              widget.fieldBloc.focusChanged();
-            }
-          },
-          child: GeneralTextField(
-            controller: _controller,
-          ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (widget.label.isNotEmpty)
+              Text(
+                widget.label,
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Focus(
+                onFocusChange: (value) {
+                  if (!value) {
+                    widget.fieldBloc.focusChanged();
+                  }
+                },
+                child: GeneralTextField(
+                  controller: _controller,
+                  maxLines: widget.maxLines,
+                  hintText: widget.hintText,
+                  focusNode: widget.fieldFocusNode,
+                  onChange: widget.fieldBloc.changeValue,
+                ),
+              ),
+            ),
+          ],
         );
       },
     );

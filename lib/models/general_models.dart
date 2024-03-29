@@ -3,6 +3,16 @@ typedef StringMap = Map<String, String>;
 
 typedef PaginationResponse<T> = ({List<T> items, PaginationModel pagination});
 
+enum TimerStatus {
+  active,
+  paused,
+  disabled;
+
+  bool get isActive => this == active;
+  bool get isPaused => this == paused;
+  bool get isDisabled => this == disabled;
+}
+
 class PaginationModel {
   final int limit;
   final int totalItems;

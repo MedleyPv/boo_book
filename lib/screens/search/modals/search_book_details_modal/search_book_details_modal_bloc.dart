@@ -12,7 +12,6 @@ class SearchBookDetailsModalBloc extends FormBloc<UserBookModel, String> {
   late final ListFieldBloc<BookReviewModel> reviews;
 
   final BookSearchModel initial;
-  bool redirectToReadingPage = false;
 
   final BooksRepository booksRepository;
   final SearchRepository searchRepository;
@@ -76,6 +75,7 @@ class SearchBookDetailsModalBloc extends FormBloc<UserBookModel, String> {
 
       final payload = UserBookModel(
         title: currentBook.title,
+        searchUid: currentBook.id,
         author: currentBook.authors.firstOrNull ?? '',
         imageUrl: currentBook.imageLinks.smallThumbnail,
         pageCount: currentBook.pageCount,
@@ -86,7 +86,6 @@ class SearchBookDetailsModalBloc extends FormBloc<UserBookModel, String> {
       emitSuccess(response);
     } catch (e, stackTrace) {
       addError(e, stackTrace);
-      redirectToReadingPage = false;
 
       emitFailure('Something went wrong!');
     }

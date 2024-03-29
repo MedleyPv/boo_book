@@ -5,7 +5,6 @@ class AppColors {
   static const scaffoldBg = Color(0xFFC0C9D1);
   static const loginButton = Color(0xFFD9D9D9);
   static const navigationBar = Color(0xFFE8EAEB);
-  static const numberButton = Color(0xFF868D92);
 
   static const disabledColor = Color(0xFFDFDFDF);
 
@@ -17,4 +16,8 @@ class AppColors {
 
   static const grey = Color(0xFF363839);
   static const greyLight = Color(0xFFECECEC);
+
+  static const numpadBg = Color(0xFFD0D3DA);
+  static const numberButton = Color(0xFF868D92);
+  static const numpadAction = Color(0xFFF2F2F2);
 }

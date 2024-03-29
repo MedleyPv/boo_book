@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:boo_book/core/index.dart';
 
@@ -6,21 +8,31 @@ class BookProgress extends StatelessWidget {
   const BookProgress({
     super.key,
     required this.progress,
+    this.bgColor,
+    this.percentageStyle,
   });
 
   final int progress;
+
+  final Color? bgColor;
+  final TextStyle? percentageStyle;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
 
+    final percentageFontSize =
+        (percentageStyle ?? textTheme.bodySmall)?.fontSize ?? 12;
+
     return Row(
       children: [
-        SizedBox(
-          width: 34,
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: percentageFontSize * 2.5,
+          ),
           child: Text(
             '$progress%',
-            style: textTheme.bodySmall,
+            style: percentageStyle ?? textTheme.bodySmall,
             textAlign: TextAlign.center,
           ),
         ),
@@ -30,7 +42,7 @@ class BookProgress extends StatelessWidget {
             painter: _ProgressPainter(
               value: progress.toDouble(),
               maxValue: 100,
-              backgroundColor: Colors.white,
+              backgroundColor: bgColor ?? Colors.white,
               progressColor: Colors.black,
             ),
             child: const SizedBox(

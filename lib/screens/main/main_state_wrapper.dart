@@ -20,6 +20,10 @@ class MainStateWrapper extends StatelessWidget {
         BlocProvider(
           create: (_) => getIt<LibraryBloc>(),
         ),
+        BlocProvider(
+          create: (_) => getIt<CalendarBloc>()..load(),
+          lazy: false,
+        ),
       ],
       child: child,
     );

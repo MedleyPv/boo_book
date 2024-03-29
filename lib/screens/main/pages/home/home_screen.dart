@@ -17,9 +17,7 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    context.read<HomeBloc>()
-      ..load()
-      ..loadExtra();
+    context.read<HomeBloc>().load();
 
     return this;
   }
@@ -45,9 +43,7 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
                   minFontSize: 20,
                 ),
                 const SizedBox(height: 26),
-                BookCalendar(
-                  calendarBooks: state.extraData,
-                ),
+                const BookCalendar(),
                 const SizedBox(height: 26),
                 BodyContainer(
                   title: 'Продовжити читати',
@@ -58,20 +54,22 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
                       const LibraryRoute(),
                     ),
                   ),
-                  child: Column(
-                    children: state.data.select(
-                      (book, index) {
-                        final isLast = index == state.data.length - 1;
+                  child: state.status.isSuccess && state.data.isEmpty
+                      ? const EmptyPlaceholder()
+                      : Column(
+                          children: state.data.select(
+                            (book, index) {
+                              final isLast = index == state.data.length - 1;
 
-                        return Padding(
-                          padding: isLast
-                              ? EdgeInsets.zero
-                              : const EdgeInsets.only(bottom: 15),
-                          child: ProgressBookCard(book: book),
-                        );
-                      },
-                    ).toList(),
-                  ),
+                              return Padding(
+                                padding: isLast
+                                    ? EdgeInsets.zero
+                                    : const EdgeInsets.only(bottom: 15),
+                                child: ProgressBookCard(book: book),
+                              );
+                            },
+                          ).toList(),
+                        ),
                 ),
               ],
             ),

@@ -22,14 +22,19 @@ UserBookModel _$UserBookModelFromJson(Map<String, dynamic> json) {
 mixin _$UserBookModel {
   @JsonKey(includeToJson: false)
   String get uid => throw _privateConstructorUsedError;
+  String get searchUid => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get progress => throw _privateConstructorUsedError;
   int get pageCount => throw _privateConstructorUsedError;
+  int get readingDuration => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
+  double get pagesPerSecond => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
-  String get review => throw _privateConstructorUsedError;
+  Review? get review => throw _privateConstructorUsedError;
+  List<BookReadingRecord> get readingRecords =>
+      throw _privateConstructorUsedError;
   DateTime? get lastRed => throw _privateConstructorUsedError;
   DateTime? get started => throw _privateConstructorUsedError;
 
@@ -47,16 +52,22 @@ abstract class $UserBookModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String uid,
+      String searchUid,
       String title,
       String author,
       String imageUrl,
       int progress,
       int pageCount,
+      int readingDuration,
       double rating,
+      double pagesPerSecond,
       bool completed,
-      String review,
+      Review? review,
+      List<BookReadingRecord> readingRecords,
       DateTime? lastRed,
       DateTime? started});
+
+  $ReviewCopyWith<$Res>? get review;
 }
 
 /// @nodoc
@@ -73,14 +84,18 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
   @override
   $Res call({
     Object? uid = null,
+    Object? searchUid = null,
     Object? title = null,
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
     Object? pageCount = null,
+    Object? readingDuration = null,
     Object? rating = null,
+    Object? pagesPerSecond = null,
     Object? completed = null,
-    Object? review = null,
+    Object? review = freezed,
+    Object? readingRecords = null,
     Object? lastRed = freezed,
     Object? started = freezed,
   }) {
@@ -88,6 +103,10 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchUid: null == searchUid
+          ? _value.searchUid
+          : searchUid // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -109,18 +128,30 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
               as int,
+      readingDuration: null == readingDuration
+          ? _value.readingDuration
+          : readingDuration // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      pagesPerSecond: null == pagesPerSecond
+          ? _value.pagesPerSecond
+          : pagesPerSecond // ignore: cast_nullable_to_non_nullable
               as double,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
-      review: null == review
+      review: freezed == review
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Review?,
+      readingRecords: null == readingRecords
+          ? _value.readingRecords
+          : readingRecords // ignore: cast_nullable_to_non_nullable
+              as List<BookReadingRecord>,
       lastRed: freezed == lastRed
           ? _value.lastRed
           : lastRed // ignore: cast_nullable_to_non_nullable
@@ -130,6 +161,18 @@ class _$UserBookModelCopyWithImpl<$Res, $Val extends UserBookModel>
           : started // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReviewCopyWith<$Res>? get review {
+    if (_value.review == null) {
+      return null;
+    }
+
+    return $ReviewCopyWith<$Res>(_value.review!, (value) {
+      return _then(_value.copyWith(review: value) as $Val);
+    });
   }
 }
 
@@ -143,16 +186,23 @@ abstract class _$$UserBookModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String uid,
+      String searchUid,
       String title,
       String author,
       String imageUrl,
       int progress,
       int pageCount,
+      int readingDuration,
       double rating,
+      double pagesPerSecond,
       bool completed,
-      String review,
+      Review? review,
+      List<BookReadingRecord> readingRecords,
       DateTime? lastRed,
       DateTime? started});
+
+  @override
+  $ReviewCopyWith<$Res>? get review;
 }
 
 /// @nodoc
@@ -167,14 +217,18 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uid = null,
+    Object? searchUid = null,
     Object? title = null,
     Object? author = null,
     Object? imageUrl = null,
     Object? progress = null,
     Object? pageCount = null,
+    Object? readingDuration = null,
     Object? rating = null,
+    Object? pagesPerSecond = null,
     Object? completed = null,
-    Object? review = null,
+    Object? review = freezed,
+    Object? readingRecords = null,
     Object? lastRed = freezed,
     Object? started = freezed,
   }) {
@@ -182,6 +236,10 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchUid: null == searchUid
+          ? _value.searchUid
+          : searchUid // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -203,18 +261,30 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
               as int,
+      readingDuration: null == readingDuration
+          ? _value.readingDuration
+          : readingDuration // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      pagesPerSecond: null == pagesPerSecond
+          ? _value.pagesPerSecond
+          : pagesPerSecond // ignore: cast_nullable_to_non_nullable
               as double,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
-      review: null == review
+      review: freezed == review
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Review?,
+      readingRecords: null == readingRecords
+          ? _value._readingRecords
+          : readingRecords // ignore: cast_nullable_to_non_nullable
+              as List<BookReadingRecord>,
       lastRed: freezed == lastRed
           ? _value.lastRed
           : lastRed // ignore: cast_nullable_to_non_nullable
@@ -232,17 +302,22 @@ class __$$UserBookModelImplCopyWithImpl<$Res>
 class _$UserBookModelImpl extends _UserBookModel {
   const _$UserBookModelImpl(
       {@JsonKey(includeToJson: false) this.uid = '',
+      this.searchUid = '',
       this.title = '',
       this.author = '',
       this.imageUrl = '',
       this.progress = 0,
       this.pageCount = 0,
+      this.readingDuration = 0,
       this.rating = 0.0,
+      this.pagesPerSecond = 0.0,
       this.completed = false,
-      this.review = '',
+      this.review,
+      final List<BookReadingRecord> readingRecords = const [],
       this.lastRed,
       this.started})
-      : super._();
+      : _readingRecords = readingRecords,
+        super._();
 
   factory _$UserBookModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserBookModelImplFromJson(json);
@@ -250,6 +325,9 @@ class _$UserBookModelImpl extends _UserBookModel {
   @override
   @JsonKey(includeToJson: false)
   final String uid;
+  @override
+  @JsonKey()
+  final String searchUid;
   @override
   @JsonKey()
   final String title;
@@ -267,13 +345,27 @@ class _$UserBookModelImpl extends _UserBookModel {
   final int pageCount;
   @override
   @JsonKey()
+  final int readingDuration;
+  @override
+  @JsonKey()
   final double rating;
+  @override
+  @JsonKey()
+  final double pagesPerSecond;
   @override
   @JsonKey()
   final bool completed;
   @override
+  final Review? review;
+  final List<BookReadingRecord> _readingRecords;
+  @override
   @JsonKey()
-  final String review;
+  List<BookReadingRecord> get readingRecords {
+    if (_readingRecords is EqualUnmodifiableListView) return _readingRecords;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_readingRecords);
+  }
+
   @override
   final DateTime? lastRed;
   @override
@@ -281,7 +373,7 @@ class _$UserBookModelImpl extends _UserBookModel {
 
   @override
   String toString() {
-    return 'UserBookModel(uid: $uid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, pageCount: $pageCount, rating: $rating, completed: $completed, review: $review, lastRed: $lastRed, started: $started)';
+    return 'UserBookModel(uid: $uid, searchUid: $searchUid, title: $title, author: $author, imageUrl: $imageUrl, progress: $progress, pageCount: $pageCount, readingDuration: $readingDuration, rating: $rating, pagesPerSecond: $pagesPerSecond, completed: $completed, review: $review, readingRecords: $readingRecords, lastRed: $lastRed, started: $started)';
   }
 
   @override
@@ -290,6 +382,8 @@ class _$UserBookModelImpl extends _UserBookModel {
         (other.runtimeType == runtimeType &&
             other is _$UserBookModelImpl &&
             (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.searchUid, searchUid) ||
+                other.searchUid == searchUid) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -298,18 +392,39 @@ class _$UserBookModelImpl extends _UserBookModel {
                 other.progress == progress) &&
             (identical(other.pageCount, pageCount) ||
                 other.pageCount == pageCount) &&
+            (identical(other.readingDuration, readingDuration) ||
+                other.readingDuration == readingDuration) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.pagesPerSecond, pagesPerSecond) ||
+                other.pagesPerSecond == pagesPerSecond) &&
             (identical(other.completed, completed) ||
                 other.completed == completed) &&
             (identical(other.review, review) || other.review == review) &&
+            const DeepCollectionEquality()
+                .equals(other._readingRecords, _readingRecords) &&
             (identical(other.lastRed, lastRed) || other.lastRed == lastRed) &&
             (identical(other.started, started) || other.started == started));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, title, author, imageUrl,
-      progress, pageCount, rating, completed, review, lastRed, started);
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      searchUid,
+      title,
+      author,
+      imageUrl,
+      progress,
+      pageCount,
+      readingDuration,
+      rating,
+      pagesPerSecond,
+      completed,
+      review,
+      const DeepCollectionEquality().hash(_readingRecords),
+      lastRed,
+      started);
 
   @JsonKey(ignore: true)
   @override
@@ -328,14 +443,18 @@ class _$UserBookModelImpl extends _UserBookModel {
 abstract class _UserBookModel extends UserBookModel {
   const factory _UserBookModel(
       {@JsonKey(includeToJson: false) final String uid,
+      final String searchUid,
       final String title,
       final String author,
       final String imageUrl,
       final int progress,
       final int pageCount,
+      final int readingDuration,
       final double rating,
+      final double pagesPerSecond,
       final bool completed,
-      final String review,
+      final Review? review,
+      final List<BookReadingRecord> readingRecords,
       final DateTime? lastRed,
       final DateTime? started}) = _$UserBookModelImpl;
   const _UserBookModel._() : super._();
@@ -347,6 +466,8 @@ abstract class _UserBookModel extends UserBookModel {
   @JsonKey(includeToJson: false)
   String get uid;
   @override
+  String get searchUid;
+  @override
   String get title;
   @override
   String get author;
@@ -357,11 +478,17 @@ abstract class _UserBookModel extends UserBookModel {
   @override
   int get pageCount;
   @override
+  int get readingDuration;
+  @override
   double get rating;
+  @override
+  double get pagesPerSecond;
   @override
   bool get completed;
   @override
-  String get review;
+  Review? get review;
+  @override
+  List<BookReadingRecord> get readingRecords;
   @override
   DateTime? get lastRed;
   @override
@@ -378,6 +505,8 @@ CalendarBookModel _$CalendarBookModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CalendarBookModel {
+  @JsonKey(includeToJson: false)
+  String get uid => throw _privateConstructorUsedError;
   String get bookUid => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   @TimestampSerializer()
@@ -396,7 +525,10 @@ abstract class $CalendarBookModelCopyWith<$Res> {
       _$CalendarBookModelCopyWithImpl<$Res, CalendarBookModel>;
   @useResult
   $Res call(
-      {String bookUid, String imageUrl, @TimestampSerializer() DateTime date});
+      {@JsonKey(includeToJson: false) String uid,
+      String bookUid,
+      String imageUrl,
+      @TimestampSerializer() DateTime date});
 }
 
 /// @nodoc
@@ -412,11 +544,16 @@ class _$CalendarBookModelCopyWithImpl<$Res, $Val extends CalendarBookModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? bookUid = null,
     Object? imageUrl = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       bookUid: null == bookUid
           ? _value.bookUid
           : bookUid // ignore: cast_nullable_to_non_nullable
@@ -442,7 +579,10 @@ abstract class _$$CalendarBookModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String bookUid, String imageUrl, @TimestampSerializer() DateTime date});
+      {@JsonKey(includeToJson: false) String uid,
+      String bookUid,
+      String imageUrl,
+      @TimestampSerializer() DateTime date});
 }
 
 /// @nodoc
@@ -456,11 +596,16 @@ class __$$CalendarBookModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? bookUid = null,
     Object? imageUrl = null,
     Object? date = null,
   }) {
     return _then(_$CalendarBookModelImpl(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       bookUid: null == bookUid
           ? _value.bookUid
           : bookUid // ignore: cast_nullable_to_non_nullable
@@ -479,15 +624,20 @@ class __$$CalendarBookModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CalendarBookModelImpl implements _CalendarBookModel {
+class _$CalendarBookModelImpl extends _CalendarBookModel {
   const _$CalendarBookModelImpl(
-      {this.bookUid = '',
+      {@JsonKey(includeToJson: false) this.uid = '',
+      this.bookUid = '',
       this.imageUrl = '',
-      @TimestampSerializer() required this.date});
+      @TimestampSerializer() required this.date})
+      : super._();
 
   factory _$CalendarBookModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CalendarBookModelImplFromJson(json);
 
+  @override
+  @JsonKey(includeToJson: false)
+  final String uid;
   @override
   @JsonKey()
   final String bookUid;
@@ -500,7 +650,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
 
   @override
   String toString() {
-    return 'CalendarBookModel(bookUid: $bookUid, imageUrl: $imageUrl, date: $date)';
+    return 'CalendarBookModel(uid: $uid, bookUid: $bookUid, imageUrl: $imageUrl, date: $date)';
   }
 
   @override
@@ -508,6 +658,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CalendarBookModelImpl &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.bookUid, bookUid) || other.bookUid == bookUid) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
@@ -516,7 +667,7 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, bookUid, imageUrl, date);
+  int get hashCode => Object.hash(runtimeType, uid, bookUid, imageUrl, date);
 
   @JsonKey(ignore: true)
   @override
@@ -533,16 +684,21 @@ class _$CalendarBookModelImpl implements _CalendarBookModel {
   }
 }
 
-abstract class _CalendarBookModel implements CalendarBookModel {
+abstract class _CalendarBookModel extends CalendarBookModel {
   const factory _CalendarBookModel(
-          {final String bookUid,
+          {@JsonKey(includeToJson: false) final String uid,
+          final String bookUid,
           final String imageUrl,
           @TimestampSerializer() required final DateTime date}) =
       _$CalendarBookModelImpl;
+  const _CalendarBookModel._() : super._();
 
   factory _CalendarBookModel.fromJson(Map<String, dynamic> json) =
       _$CalendarBookModelImpl.fromJson;
 
+  @override
+  @JsonKey(includeToJson: false)
+  String get uid;
   @override
   String get bookUid;
   @override
@@ -1071,4 +1227,376 @@ abstract class _SearchImageLinksModel implements SearchImageLinksModel {
   @JsonKey(ignore: true)
   _$$SearchImageLinksModelImplCopyWith<_$SearchImageLinksModelImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+BookReadingRecord _$BookReadingRecordFromJson(Map<String, dynamic> json) {
+  return _BookReadingRecord.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookReadingRecord {
+  int get id => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
+  int get pageCount => throw _privateConstructorUsedError;
+  int get percentage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookReadingRecordCopyWith<BookReadingRecord> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookReadingRecordCopyWith<$Res> {
+  factory $BookReadingRecordCopyWith(
+          BookReadingRecord value, $Res Function(BookReadingRecord) then) =
+      _$BookReadingRecordCopyWithImpl<$Res, BookReadingRecord>;
+  @useResult
+  $Res call(
+      {int id, DateTime created, int duration, int pageCount, int percentage});
+}
+
+/// @nodoc
+class _$BookReadingRecordCopyWithImpl<$Res, $Val extends BookReadingRecord>
+    implements $BookReadingRecordCopyWith<$Res> {
+  _$BookReadingRecordCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? created = null,
+    Object? duration = null,
+    Object? pageCount = null,
+    Object? percentage = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      percentage: null == percentage
+          ? _value.percentage
+          : percentage // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookReadingRecordImplCopyWith<$Res>
+    implements $BookReadingRecordCopyWith<$Res> {
+  factory _$$BookReadingRecordImplCopyWith(_$BookReadingRecordImpl value,
+          $Res Function(_$BookReadingRecordImpl) then) =
+      __$$BookReadingRecordImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id, DateTime created, int duration, int pageCount, int percentage});
+}
+
+/// @nodoc
+class __$$BookReadingRecordImplCopyWithImpl<$Res>
+    extends _$BookReadingRecordCopyWithImpl<$Res, _$BookReadingRecordImpl>
+    implements _$$BookReadingRecordImplCopyWith<$Res> {
+  __$$BookReadingRecordImplCopyWithImpl(_$BookReadingRecordImpl _value,
+      $Res Function(_$BookReadingRecordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? created = null,
+    Object? duration = null,
+    Object? pageCount = null,
+    Object? percentage = null,
+  }) {
+    return _then(_$BookReadingRecordImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageCount: null == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      percentage: null == percentage
+          ? _value.percentage
+          : percentage // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookReadingRecordImpl extends _BookReadingRecord {
+  const _$BookReadingRecordImpl(
+      {required this.id,
+      required this.created,
+      required this.duration,
+      required this.pageCount,
+      required this.percentage})
+      : super._();
+
+  factory _$BookReadingRecordImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookReadingRecordImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final DateTime created;
+  @override
+  final int duration;
+  @override
+  final int pageCount;
+  @override
+  final int percentage;
+
+  @override
+  String toString() {
+    return 'BookReadingRecord(id: $id, created: $created, duration: $duration, pageCount: $pageCount, percentage: $percentage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookReadingRecordImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.pageCount, pageCount) ||
+                other.pageCount == pageCount) &&
+            (identical(other.percentage, percentage) ||
+                other.percentage == percentage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, created, duration, pageCount, percentage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookReadingRecordImplCopyWith<_$BookReadingRecordImpl> get copyWith =>
+      __$$BookReadingRecordImplCopyWithImpl<_$BookReadingRecordImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookReadingRecordImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookReadingRecord extends BookReadingRecord {
+  const factory _BookReadingRecord(
+      {required final int id,
+      required final DateTime created,
+      required final int duration,
+      required final int pageCount,
+      required final int percentage}) = _$BookReadingRecordImpl;
+  const _BookReadingRecord._() : super._();
+
+  factory _BookReadingRecord.fromJson(Map<String, dynamic> json) =
+      _$BookReadingRecordImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  DateTime get created;
+  @override
+  int get duration;
+  @override
+  int get pageCount;
+  @override
+  int get percentage;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookReadingRecordImplCopyWith<_$BookReadingRecordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Review _$ReviewFromJson(Map<String, dynamic> json) {
+  return _Review.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Review {
+  String get uid => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReviewCopyWith<Review> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReviewCopyWith<$Res> {
+  factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
+      _$ReviewCopyWithImpl<$Res, Review>;
+  @useResult
+  $Res call({String uid, String description});
+}
+
+/// @nodoc
+class _$ReviewCopyWithImpl<$Res, $Val extends Review>
+    implements $ReviewCopyWith<$Res> {
+  _$ReviewCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+    Object? description = null,
+  }) {
+    return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
+  factory _$$ReviewImplCopyWith(
+          _$ReviewImpl value, $Res Function(_$ReviewImpl) then) =
+      __$$ReviewImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String uid, String description});
+}
+
+/// @nodoc
+class __$$ReviewImplCopyWithImpl<$Res>
+    extends _$ReviewCopyWithImpl<$Res, _$ReviewImpl>
+    implements _$$ReviewImplCopyWith<$Res> {
+  __$$ReviewImplCopyWithImpl(
+      _$ReviewImpl _value, $Res Function(_$ReviewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+    Object? description = null,
+  }) {
+    return _then(_$ReviewImpl(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ReviewImpl extends _Review {
+  const _$ReviewImpl({this.uid = '', this.description = ''}) : super._();
+
+  factory _$ReviewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReviewImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String uid;
+  @override
+  @JsonKey()
+  final String description;
+
+  @override
+  String toString() {
+    return 'Review(uid: $uid, description: $description)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReviewImpl &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, uid, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
+      __$$ReviewImplCopyWithImpl<_$ReviewImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ReviewImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Review extends Review {
+  const factory _Review({final String uid, final String description}) =
+      _$ReviewImpl;
+  const _Review._() : super._();
+
+  factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
+
+  @override
+  String get uid;
+  @override
+  String get description;
+  @override
+  @JsonKey(ignore: true)
+  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

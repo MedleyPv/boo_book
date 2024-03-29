@@ -37,7 +37,7 @@ class SearchRepository {
         'volumes?q=intitle:$formattedQuery'
         '&maxResults=${pagination.limit}'
         '&startIndex=${pagination.startOffset}'
-        '&langRestrict="ru"'
+        '&langRestrict=uk'
         '&printType=books';
 
     final response = await http.get(Uri.parse(queryUrl));
@@ -45,7 +45,7 @@ class SearchRepository {
     final data = jsonDecode(response.body) as Map<String, dynamic>;
 
     final totalItems = data['totalItems'] as int;
-    final items = (data['items'] as List)
+    final items = ((data['items'] ?? []) as List)
         .cast<DynamicMap>()
         .map((itemsJson) => _converter(itemsJson))
         .toList();

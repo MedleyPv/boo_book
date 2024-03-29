@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,6 +37,12 @@ class LibraryScreen extends StatelessWidget implements AutoRouteWrapper {
           ),
           BlocBuilder<LibraryBloc, LibraryState>(
             builder: (_, state) {
+              if (state.status.isSuccess && state.data.isEmpty) {
+                return const Expanded(
+                  child: EmptyPlaceholder(),
+                );
+              }
+
               return Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.only(
@@ -52,6 +59,7 @@ class LibraryScreen extends StatelessWidget implements AutoRouteWrapper {
                     final item = state.data[index];
                     return LibraryBookCard(
                       book: item,
+                      onTap: () => context.navigateToBookDetails(item),
                     );
                   },
                 ),

@@ -29,7 +29,7 @@ Map<String, dynamic> _$$BookReviewModelImplToJson(
       'rating': instance.rating,
       'description': instance.description,
       'created': instance.created?.toIso8601String(),
-      'userPreview': instance.userPreview,
+      'userPreview': instance.userPreview.toJson(),
     };
 
 _$UserReviewModelImpl _$$UserReviewModelImplFromJson(

@@ -9,8 +9,8 @@ import 'package:boo_book/screens/search/modals/search_book_details_modal/widgets
 import 'package:boo_book/widgets/index.dart';
 
 @RoutePage()
-class ViewAllReviewsModal extends StatelessWidget {
-  const ViewAllReviewsModal({
+class ViewAllReviewsModalScreen extends StatelessWidget {
+  const ViewAllReviewsModalScreen({
     super.key,
     required this.reviews,
   });
@@ -22,7 +22,6 @@ class ViewAllReviewsModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return LandingPageScaffold(
       appBar: AppBar(
-        toolbarHeight: kToolbarHeight / 1.5,
         title: Text(
           'Відгуки',
           style: Theme.of(context).textTheme.titleMedium,
@@ -32,8 +31,11 @@ class ViewAllReviewsModal extends StatelessWidget {
           ListFieldBlocState<BookReviewModel>>(
         bloc: reviews,
         builder: (context, state) {
-          return ListView.builder(
+          return ListView.separated(
             itemCount: state.value.length,
+            separatorBuilder: (_, __) {
+              return const SizedBox(height: 10);
+            },
             itemBuilder: (_, index) {
               return BookReviewCard(
                 review: state.value[index],

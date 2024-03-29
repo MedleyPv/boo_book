@@ -46,7 +46,13 @@ class AppRouter extends $AppRouter {
               page: SearchBookDetailsModalRoute.page,
             ),
             AutoRoute(
-              page: ViewAllReviewsModal.page,
+              page: ViewAllReviewsModalRoute.page,
+            ),
+            AutoRoute(
+              page: ReadingBookModalRoute.page,
+            ),
+            AutoRoute(
+              page: CompletedBookModalRoute.page,
             ),
           ],
         ),

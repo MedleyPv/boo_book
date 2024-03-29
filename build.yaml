@@ -13,6 +13,8 @@ targets:
           makeCollectionsUnmodifiable: false
       json_serializable:
         enabled: true
+        options:
+          explicit_to_json: true
         generate_for:
           include:
             - lib/**/models.dart

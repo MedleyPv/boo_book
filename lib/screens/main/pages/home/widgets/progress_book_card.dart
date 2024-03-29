@@ -19,50 +19,53 @@ class ProgressBookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
 
-    return SizedBox(
-      height: 130,
-      child: Row(
-        children: [
-          CachedNetworkImage(
-            width: 84,
-            height: 130,
-            imageUrl: book.imageUrl,
-            imageBuilder: (_, imageProvider) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => context.navigateToBookDetails(book),
+      child: SizedBox(
+        height: 130,
+        child: Row(
+          children: [
+            CachedNetworkImage(
+              width: 84,
+              height: 130,
+              imageUrl: book.imageUrl,
+              imageBuilder: (_, imageProvider) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  book.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: textTheme.titleMedium,
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  book.author,
-                  style: textTheme.titleSmall,
-                ),
-                const Spacer(),
-                BookProgress(
-                  progress: book.progress,
-                ),
-              ],
+                );
+              },
             ),
-          ),
-        ],
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    book.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    book.author,
+                    style: textTheme.titleSmall,
+                  ),
+                  const Spacer(),
+                  BookProgress(
+                    progress: book.progress,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

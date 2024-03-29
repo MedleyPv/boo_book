@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:boo_book/styles/index.dart';
 
 class BookAvatarFrame extends StatelessWidget {
   const BookAvatarFrame({
     super.key,
     required this.imageUrl,
+    this.useChangedImage = false,
   });
 
   final String imageUrl;
+
+  final bool useChangedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +38,11 @@ class BookAvatarFrame extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(5),
-            child: Image.network(
-              imageUrl,
-            ),
+            child: useChangedImage
+                ? CachedNetworkImage(imageUrl: imageUrl)
+                : Image.network(
+                    imageUrl,
+                  ),
           ),
         ),
       ),

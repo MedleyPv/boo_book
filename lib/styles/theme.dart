@@ -8,11 +8,15 @@ class AppTheme {
       useMaterial3: false,
       scaffoldBackgroundColor: AppColors.scaffoldBg,
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
         elevation: 0,
+        toolbarHeight: kToolbarHeight / 1.5,
+        backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: Colors.black,
       ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.black,
@@ -33,6 +37,7 @@ class AppTheme {
         labelSmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
+          letterSpacing: 0.2,
         ),
         labelMedium: TextStyle(
           fontSize: 15,

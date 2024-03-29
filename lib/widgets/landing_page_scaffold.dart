@@ -8,11 +8,13 @@ class LandingPageScaffold extends StatelessWidget {
     super.key,
     required this.body,
     this.appBar,
+    this.safeAreaBottom = true,
     this.floatingActionButton,
   });
 
   final Widget body;
 
+  final bool safeAreaBottom;
   final PreferredSizeWidget? appBar;
   final Widget? floatingActionButton;
 
@@ -22,6 +24,7 @@ class LandingPageScaffold extends StatelessWidget {
       appBar: appBar,
       floatingActionButton: floatingActionButton,
       body: SafeArea(
+        bottom: safeAreaBottom,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppStyleConstants.landingHPadding,

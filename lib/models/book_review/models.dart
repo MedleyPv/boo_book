@@ -34,11 +34,21 @@ class BookReviewModel with _$BookReviewModel {
 
 @freezed
 class UserReviewModel with _$UserReviewModel {
+  const UserReviewModel._();
+
   const factory UserReviewModel({
     @Default('') String uid,
     @Default('') String displayName,
     @Default('') String imageUrl,
   }) = _UserReviewModel;
+
+  factory UserReviewModel.fromProfile(UserProfile userProfile) {
+    return UserReviewModel(
+      uid: userProfile.uid,
+      displayName: userProfile.displayName,
+      imageUrl: userProfile.imageUrl,
+    );
+  }
 
   factory UserReviewModel.fromJson(Map<String, dynamic> json) =>
       _$UserReviewModelFromJson(json);
