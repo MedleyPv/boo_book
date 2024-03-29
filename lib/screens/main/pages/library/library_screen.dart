@@ -8,7 +8,6 @@ import 'package:boo_book/router/index.dart';
 import 'package:boo_book/screens/main/pages/library/library_bloc.dart';
 import 'package:boo_book/screens/main/pages/library/widgets/library_book_card.dart';
 import 'package:boo_book/styles/index.dart';
-import 'package:boo_book/widgets/empty_placeholder.dart';
 import 'package:boo_book/widgets/index.dart';
 
 // TODO(Pasha): Add search and filter
@@ -60,6 +59,7 @@ class LibraryScreen extends StatelessWidget implements AutoRouteWrapper {
                     final item = state.data[index];
                     return LibraryBookCard(
                       book: item,
+                      onTap: () => context.navigateToBookDetails(item),
                     );
                   },
                 ),

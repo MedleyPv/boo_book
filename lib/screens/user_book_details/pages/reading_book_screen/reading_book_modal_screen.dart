@@ -16,14 +16,13 @@ class ReadingBookModalScreen extends StatelessWidget
     implements AutoRouteWrapper {
   const ReadingBookModalScreen({
     super.key,
+    required this.book,
   });
+
+  final UserBookModel book;
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    final args = context.routeData.parent!.args! as UserBookDetailsRouteArgs;
-
-    final book = args.book;
-
     final formBloc = getIt<ReadingBookModalBloc>(
       param1: book,
     );
@@ -48,7 +47,7 @@ class ReadingBookModalScreen extends StatelessWidget
           context.read<LibraryBloc>().editItem(book);
 
           if (book.completed) {
-            context.pushRoute(
+            context.replaceRoute(
               CompletedBookModalRoute(
                 book: book,
               ),

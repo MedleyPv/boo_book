@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'package:boo_book/models/index.dart';
 
+// TODO(Pasha): Refactor to collection refference
 @injectable
 class ReviewsRepository {
   final _client = FirebaseFirestore.instance;

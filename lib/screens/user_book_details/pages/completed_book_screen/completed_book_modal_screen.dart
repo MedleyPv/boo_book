@@ -18,18 +18,14 @@ class CompletedBookModalScreen extends StatelessWidget
     implements AutoRouteWrapper {
   const CompletedBookModalScreen({
     super.key,
-    this.book,
+    required this.book,
   });
 
-  final UserBookModel? book;
+  final UserBookModel book;
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    final args = context.routeData.parent!.args! as UserBookDetailsRouteArgs;
-
-    final userBook = book ?? args.book;
-
-    final formBloc = getIt<CompletedBookModalBloc>(param1: userBook);
+    final formBloc = getIt<CompletedBookModalBloc>(param1: book);
 
     return BlocProvider(
       create: (_) => formBloc,
