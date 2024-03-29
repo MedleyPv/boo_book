@@ -11,7 +11,7 @@ class ReviewsRepository {
   Future<List<BookReviewModel>> getBookReviews(String bookSearchId) async {
     final response = await _client
         .collection('reviews')
-        .where('searchId', isEqualTo: bookSearchId)
+        .where('bookSearchId', isEqualTo: bookSearchId)
         .where('description', isNotEqualTo: '')
         .get();
 
@@ -20,15 +20,20 @@ class ReviewsRepository {
         .toList();
   }
 
-  Future<UserReviewModel> createBookReview(BookReviewModel payload) {
-    // TODO(Pasha): Finish this
-    throw UnimplementedError();
+  Future<BookReviewModel> createBookReview(BookReviewModel payload) async {
+    final response = await _client.collection('reviews').add(payload.toJson());
+
+    return payload.copyWith(uid: response.id);
+  }
+
+  Future<void> updateReviewRating(String uid, double rating) {
+    return _client.collection('reviews').doc(uid).update({'rating': rating});
   }
 
   Future<void> updateBookReview(BookReviewModel payload) {
     return _client
         .collection('reviews')
-        .doc(payload.bookSearchId)
+        .doc(payload.uid)
         .update(payload.toJson());
   }
 }

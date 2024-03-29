@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import 'package:boo_book/blocs/index.dart';
 import 'package:boo_book/core/index.dart';
 import 'package:boo_book/models/index.dart';
 import 'package:boo_book/router/index.dart';
@@ -43,81 +44,90 @@ class CompletedBookModalScreen extends StatelessWidget
     final freeSpace =
         context.screenHeight - 646 - AppStyleConstants.landingTopPadding;
 
-    return LandingPageScaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: context.popRoute,
+    return CustomFormBlocListener(
+      formBloc: formBloc,
+      onSuccess: (context, state) {
+        final book = state.response as UserBookModel?;
+
+        if (book != null) {
+          context.read<LibraryBloc>().editItem(book);
+        }
+      },
+      child: LandingPageScaffold(
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: context.popRoute,
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 154,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 22,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.card,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.fill,
-                        imageUrl: book.imageUrl,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 154,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 22,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.card,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          imageUrl: book.imageUrl,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        book.title,
-                        style: textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        book.author,
-                        style: textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 20),
-                      RatingBar.builder(
-                        itemSize: 22,
-                        initialRating: book.rating,
-                        unratedColor: Colors.grey,
-                        itemPadding: const EdgeInsets.only(right: 4),
-                        itemBuilder: (_, index) {
-                          return Assets.icons.start.svg();
-                        },
-                        onRatingUpdate: (_) {
-                          //
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          book.title,
+                          style: textTheme.titleMedium,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          book.author,
+                          style: textTheme.titleSmall,
+                        ),
+                        const SizedBox(height: 20),
+                        RatingBar.builder(
+                          itemSize: 22,
+                          initialRating: book.rating,
+                          unratedColor: Colors.grey,
+                          itemPadding: const EdgeInsets.only(right: 4),
+                          itemBuilder: (_, index) {
+                            return Assets.icons.start.svg();
+                          },
+                          onRatingUpdate: (rating) {
+                            formBloc.rating.changeValue(rating);
+                            formBloc.submit();
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            BookReviewFormBuilder(
-              formBloc: formBloc.review,
-              onSave: () {
-                //
-              },
-            ),
-            SizedBox(height: freeSpace),
-            BookAnalytics(
-              book: book,
-            ),
-          ],
+              const SizedBox(height: 16),
+              BookReviewFormBuilder(
+                fieldBloc: formBloc.review,
+                onSave: formBloc.saveReview,
+              ),
+              SizedBox(height: freeSpace),
+              BookAnalytics(
+                book: book,
+              ),
+            ],
+          ),
         ),
       ),
     );

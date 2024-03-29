@@ -19,6 +19,7 @@ extension UserBooksX on List<UserBookModel> {
   }
 
   List<UserBookModel> get withReview {
-    return where((book) => book.review.isNotEmpty).toList();
+    return where((book) => book.review?.description.isNotEmpty ?? false)
+        .toList();
   }
 }

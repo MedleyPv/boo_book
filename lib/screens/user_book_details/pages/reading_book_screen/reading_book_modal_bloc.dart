@@ -127,7 +127,7 @@ class ReadingBookModalBloc extends FormBloc<UserBookModel, String> {
       final now = DateTime.now();
       final book = currentBook.value!;
       final latestRecords = records.value.first;
-      final completed = latestRecords.pageCount == book.pageCount;
+      final completed = latestRecords.pageCount >= book.pageCount;
 
       final remaining = latestRecords.pageCount / book.pageCount;
 

@@ -15,6 +15,9 @@ class AppTheme {
           color: Colors.black,
         ),
       ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: Colors.black,
+      ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.black,
       ),

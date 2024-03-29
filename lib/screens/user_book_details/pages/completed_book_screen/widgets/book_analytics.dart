@@ -31,7 +31,7 @@ class BookAnalytics extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: _AnalyticsCard(
-                title: 'Кількість сторінок',
+                title: 'Середня швидкість',
                 value: '$pagesPerHour ст/год',
               ),
             ),

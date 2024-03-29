@@ -385,9 +385,10 @@ class __$$UserReviewModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserReviewModelImpl implements _UserReviewModel {
+class _$UserReviewModelImpl extends _UserReviewModel {
   const _$UserReviewModelImpl(
-      {this.uid = '', this.displayName = '', this.imageUrl = ''});
+      {this.uid = '', this.displayName = '', this.imageUrl = ''})
+      : super._();
 
   factory _$UserReviewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserReviewModelImplFromJson(json);
@@ -438,11 +439,12 @@ class _$UserReviewModelImpl implements _UserReviewModel {
   }
 }
 
-abstract class _UserReviewModel implements UserReviewModel {
+abstract class _UserReviewModel extends UserReviewModel {
   const factory _UserReviewModel(
       {final String uid,
       final String displayName,
       final String imageUrl}) = _$UserReviewModelImpl;
+  const _UserReviewModel._() : super._();
 
   factory _UserReviewModel.fromJson(Map<String, dynamic> json) =
       _$UserReviewModelImpl.fromJson;

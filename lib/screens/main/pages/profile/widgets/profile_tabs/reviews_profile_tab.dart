@@ -76,7 +76,7 @@ class _ReviewItem extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 6),
                 child: RatingBarIndicator(
                   itemSize: 22,
-                  rating: book.rating.toDouble(),
+                  rating: book.rating,
                   unratedColor: Colors.grey,
                   itemBuilder: (_, index) {
                     return Assets.icons.start.svg();
@@ -87,7 +87,7 @@ class _ReviewItem extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            book.review,
+            book.review?.description ?? '',
             style: textTheme.titleSmall?.copyWith(fontSize: 14),
           ),
         ],

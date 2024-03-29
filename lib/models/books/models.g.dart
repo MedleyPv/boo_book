@@ -9,6 +9,7 @@ part of 'models.dart';
 _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
     _$UserBookModelImpl(
       uid: json['uid'] as String? ?? '',
+      searchUid: json['searchUid'] as String? ?? '',
       title: json['title'] as String? ?? '',
       author: json['author'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
@@ -18,7 +19,9 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       pagesPerSecond: (json['pagesPerSecond'] as num?)?.toDouble() ?? 0.0,
       completed: json['completed'] as bool? ?? false,
-      review: json['review'] as String? ?? '',
+      review: json['review'] == null
+          ? null
+          : Review.fromJson(json['review'] as Map<String, dynamic>),
       readingRecords: (json['readingRecords'] as List<dynamic>?)
               ?.map(
                   (e) => BookReadingRecord.fromJson(e as Map<String, dynamic>))
@@ -34,6 +37,7 @@ _$UserBookModelImpl _$$UserBookModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
     <String, dynamic>{
+      'searchUid': instance.searchUid,
       'title': instance.title,
       'author': instance.author,
       'imageUrl': instance.imageUrl,
@@ -43,7 +47,7 @@ Map<String, dynamic> _$$UserBookModelImplToJson(_$UserBookModelImpl instance) =>
       'rating': instance.rating,
       'pagesPerSecond': instance.pagesPerSecond,
       'completed': instance.completed,
-      'review': instance.review,
+      'review': instance.review?.toJson(),
       'readingRecords': instance.readingRecords.map((e) => e.toJson()).toList(),
       'lastRed': instance.lastRed?.toIso8601String(),
       'started': instance.started?.toIso8601String(),
@@ -135,4 +139,15 @@ Map<String, dynamic> _$$BookReadingRecordImplToJson(
       'duration': instance.duration,
       'pageCount': instance.pageCount,
       'percentage': instance.percentage,
+    };
+
+_$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
+      uid: json['uid'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
+    <String, dynamic>{
+      'uid': instance.uid,
+      'description': instance.description,
     };

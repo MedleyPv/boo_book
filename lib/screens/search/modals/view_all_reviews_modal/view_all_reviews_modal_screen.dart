@@ -31,8 +31,11 @@ class ViewAllReviewsModalScreen extends StatelessWidget {
           ListFieldBlocState<BookReviewModel>>(
         bloc: reviews,
         builder: (context, state) {
-          return ListView.builder(
+          return ListView.separated(
             itemCount: state.value.length,
+            separatorBuilder: (_, __) {
+              return const SizedBox(height: 10);
+            },
             itemBuilder: (_, index) {
               return BookReviewCard(
                 review: state.value[index],

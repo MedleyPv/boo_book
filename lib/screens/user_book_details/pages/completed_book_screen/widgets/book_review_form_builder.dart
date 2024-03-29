@@ -11,11 +11,11 @@ import 'package:boo_book/widgets/form_builder/index.dart';
 class BookReviewFormBuilder extends StatefulWidget {
   const BookReviewFormBuilder({
     super.key,
-    required this.formBloc,
+    required this.fieldBloc,
     this.onSave,
   });
 
-  final TextFieldBloc formBloc;
+  final TextFieldBloc fieldBloc;
   final VoidCallback? onSave;
 
   @override
@@ -29,8 +29,8 @@ class _BookReviewFormBuilderState extends State<BookReviewFormBuilder> {
 
   @override
   void initState() {
-    _valueChangeSubscription = widget.formBloc.valueStream.listen((review) {
-      final isInitUpdated = widget.formBloc.initialValue != review;
+    _valueChangeSubscription = widget.fieldBloc.stream.listen((review) {
+      final isInitUpdated = widget.fieldBloc.initialValue != review.value;
 
       if (isInitUpdated != showSaveButton.value) {
         showSaveButton.value = isInitUpdated;
@@ -54,7 +54,7 @@ class _BookReviewFormBuilderState extends State<BookReviewFormBuilder> {
     return Column(
       children: [
         TextInputFormBuilder(
-          fieldBloc: widget.formBloc,
+          fieldBloc: widget.fieldBloc,
           maxLines: 5,
           label: 'Відгук',
           hintText: 'Додати відгук',

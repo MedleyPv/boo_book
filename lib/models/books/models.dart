@@ -17,6 +17,7 @@ class UserBookModel with _$UserBookModel {
 
   const factory UserBookModel({
     @JsonKey(includeToJson: false) @Default('') String uid,
+    @Default('') String searchUid,
     @Default('') String title,
     @Default('') String author,
     @Default('') String imageUrl,
@@ -26,7 +27,7 @@ class UserBookModel with _$UserBookModel {
     @Default(0.0) double rating,
     @Default(0.0) double pagesPerSecond,
     @Default(false) bool completed,
-    @Default('') String review,
+    Review? review,
     @Default([]) List<BookReadingRecord> readingRecords,
     DateTime? lastRed,
     DateTime? started,
@@ -123,4 +124,16 @@ class BookReadingRecord with _$BookReadingRecord {
 
   factory BookReadingRecord.fromJson(Map<String, dynamic> json) =>
       _$BookReadingRecordFromJson(json);
+}
+
+@freezed
+class Review with _$Review {
+  const Review._();
+
+  const factory Review({
+    @Default('') String uid,
+    @Default('') String description,
+  }) = _Review;
+
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 }
